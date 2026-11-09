@@ -2,7 +2,7 @@
 
 > *A high-performance festive animation engine & ambient desktop screen overlay for Diwali — crafted with love, light, and cherished memories.*
 
-[![npm version](https://img.shields.io/badge/npm-v1.0.0-orange.svg)](https://www.npmjs.com/package/diwali-animations)
+[![npm version](https://img.shields.io/badge/npm-diwali-orange.svg)](https://www.npmjs.com/package/diwali)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![60/120 FPS](https://img.shields.io/badge/Performance-60%2F120%20FPS-brightgreen.svg)](#-performance--architecture)
@@ -65,22 +65,32 @@ npm run package:app
 
 ---
 
-## 🪔 The NPM Animation Library (`diwali-animations`)
+## 🪔 The Node / Web Package (`diwali`)
 
-`diwali-animations` is also a zero-dependency, tree-shakeable animation package for modern web apps (React, Next.js, Vue, or Vanilla HTML5 Canvas).
+`diwali` is a zero-dependency, tree-shakeable festive animation package for modern web apps (React, Next.js, Vue, or Vanilla HTML5 Canvas), plus a CLI desktop overlay tool!
 
 ### 📦 Installation
 
 ```bash
-npm install diwali-animations
+npm install diwali
 ```
 
 ```bash
-yarn add diwali-animations
+yarn add diwali
 ```
 
 ```bash
-pnpm add diwali-animations
+pnpm add diwali
+```
+
+---
+
+## ⚡ Instant Desktop Overlay (`npx diwali`)
+
+You can launch the festive ambient macOS desktop overlay directly from your terminal:
+
+```bash
+npx diwali
 ```
 
 ---
@@ -90,7 +100,7 @@ pnpm add diwali-animations
 ### 1. One-Line Festive Salvos
 
 ```typescript
-import { rockets, diyas, rangoli, labrador, toran, chakri, flowerShower } from 'diwali-animations';
+import { rockets, diyas, rangoli, labrador, toran, chakri, flowerShower } from 'diwali';
 
 // Launch a rocket salvo bursting into vibrant sparks
 rockets({ count: 6 });
@@ -114,7 +124,7 @@ flowerShower({ count: 50, duration: 6000 });
 ### 2. Full Engine Control
 
 ```typescript
-import { DiwaliEngine } from 'diwali-animations';
+import { DiwaliEngine } from 'diwali';
 
 const diwali = new DiwaliEngine({
   sound: true,      // Procedural Web Audio (no audio downloads!)
@@ -138,7 +148,7 @@ window.addEventListener('click', (e) => {
 
 ```tsx
 import React, { useEffect } from 'react';
-import { DiwaliCanvas, useDiwali } from 'diwali-animations/react';
+import { DiwaliCanvas, useDiwali } from 'diwali/react';
 
 export function DiwaliHero() {
   const { rockets, celebrate } = useDiwali();

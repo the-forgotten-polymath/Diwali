@@ -1,11 +1,14 @@
 {
-  "name": "diwali-animations",
+  "name": "diwali",
   "version": "1.0.0",
-  "description": "The definitive, lightweight, 60fps Diwali animation library for modern web apps. Diyas, rockets, chakri, anar, phuljhadi, lanterns, flower shower, and interactive sparklers with zero dependencies.",
+  "description": "The definitive festive animation engine & ambient desktop screen overlay for Diwali — dedicated to Julie 💛",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "bin": {
+    "diwali": "./bin/diwali.js"
+  },
   "exports": {
     ".": {
       "import": "./dist/index.js",
@@ -20,6 +23,8 @@
   },
   "files": [
     "dist",
+    "bin",
+    "electron",
     "README.md",
     "LICENSE"
   ],
@@ -33,6 +38,14 @@
     "overlay": "env -u ELECTRON_RUN_AS_NODE electron electron/main.cjs",
     "package:app": "bash scripts/build-mac-app.sh"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/the-forgotten-polymath/Diwali.git"
+  },
+  "bugs": {
+    "url": "https://github.com/the-forgotten-polymath/Diwali/issues"
+  },
+  "homepage": "https://github.com/the-forgotten-polymath/Diwali#readme",
   "keywords": [
     "diwali",
     "diwali-animation",
@@ -53,7 +66,7 @@
     "react-diwali",
     "zero-dependency"
   ],
-  "author": "Antigravity",
+  "author": "the-forgotten-polymath",
   "license": "MIT",
   "sideEffects": false,
   "devDependencies": {
