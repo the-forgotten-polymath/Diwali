@@ -1,0 +1,81 @@
+{
+  "name": "diwali-animations",
+  "version": "1.0.0",
+  "description": "The definitive, lightweight, 60fps Diwali animation library for modern web apps. Diyas, rockets, chakri, anar, phuljhadi, lanterns, flower shower, and interactive sparklers with zero dependencies.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./react": {
+      "import": "./dist/react/index.js",
+      "require": "./dist/react/index.cjs",
+      "types": "./dist/react/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "vite build && esbuild src/index.ts --bundle --outfile=dist/diwali.global.js --format=iife --global-name=DiwaliAnimations --minify && tsc --emitDeclarationOnly",
+    "build:demo": "vite build --mode demo",
+    "dev": "vite demo",
+    "preview": "vite preview demo",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test test/diwali.test.mjs",
+    "overlay": "env -u ELECTRON_RUN_AS_NODE electron electron/main.cjs",
+    "package:app": "bash scripts/build-mac-app.sh"
+  },
+  "keywords": [
+    "diwali",
+    "diwali-animation",
+    "fireworks",
+    "diyas",
+    "deepavali",
+    "chakri",
+    "phuljhadi",
+    "sparklers",
+    "anar",
+    "lanterns",
+    "canvas",
+    "particles",
+    "confetti",
+    "festive",
+    "indian-festivals",
+    "celebration",
+    "react-diwali",
+    "zero-dependency"
+  ],
+  "author": "Antigravity",
+  "license": "MIT",
+  "sideEffects": false,
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "electron": "^45.2.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.0",
+    "vite-plugin-dts": "^3.7.3"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  }
+}

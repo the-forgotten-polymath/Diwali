@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🪔 Diwali Rocket Animations - Automatic Festive Fireworks</title>
+  <link rel="stylesheet" href="./demo/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+</head>
+<body>
+  <div class="starry-sky"></div>
+
+  <!-- Minimal floating top bar -->
+  <header class="header-minimal">
+    <div class="title-badge">✨ NPM: diwali-animations</div>
+    <h1>Happy Diwali 🪔</h1>
+    <div class="subtitle">Automatic Rocket Fireworks • 60 FPS • Click screen to launch extra</div>
+  </header>
+
+  <!-- Clean floating controls (top-right) -->
+  <div class="top-controls">
+    <button class="icon-btn active" id="btn-sound" title="Toggle Procedural Audio (whistle & boom)">🔊</button>
+    <button class="icon-btn active" id="btn-play-pause" title="Pause / Resume Automatic Rockets">⏸️</button>
+    <button class="icon-btn" id="btn-mouse-rockets" title="Toggle Cursor-Following Rockets">🎯</button>
+    <button class="icon-btn" id="btn-code" title="View NPM & Code Snippet">💻</button>
+    <button class="icon-btn" id="btn-fullscreen" title="Toggle Fullscreen">⛶</button>
+  </div>
+
+  <!-- Live Code Snippet Drawer -->
+  <div class="code-banner hidden" id="code-banner">
+    <div class="code-header">
+      <span class="code-title">NPM Usage</span>
+      <button class="copy-btn" id="copy-btn">📋 Copy Code</button>
+    </div>
+    <pre><code id="code-content">// Install: npm install diwali-animations
+import { startRocketShow, hangingLanterns, diyas, labrador, lanterns } from 'diwali-animations';
+
+// 🚀 Continuous rockets from bottom:
+startRocketShow(850);
+
+// 🏮 Hanging lanterns with mouse proximity transparency:
+hangingLanterns(10);
+
+// 🪔 Docked diyas (corners cleared):
+diyas({ count: 9, clearCorners: true });
+
+// 🐕 Labrador eating treats in bottom-left:
+labrador();
+
+// 🏮 Sky floaters ascending bottom to top:
+lanterns({ continuous: true, position: 'full' });</code></pre>
+  </div>
+
+  <script type="module" src="./demo/main.ts"></script>
+</body>
+</html>
