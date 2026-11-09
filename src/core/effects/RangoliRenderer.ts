@@ -15,6 +15,8 @@ export class RangoliRenderer {
   private nativeR = 56;
   private offscreenCanvas: HTMLCanvasElement | null = null;
   private flamePhase = 0;
+  private currentAlpha = 1.0;
+  private targetAlpha = 1.0;
   private options?: RangoliOptions;
 
   constructor(options?: RangoliOptions) {
@@ -234,14 +236,26 @@ export class RangoliRenderer {
     ctx.fill();
   }
 
-  public update(dt = 1): void {
+  public update(mouseX = -999, mouseY = -999, dt = 1): void {
     this.flamePhase += 0.08 * dt;
+
+    // Mouse proximity transparency: fade out when cursor hovers near bottom-right floor corner
+    const dist = Math.hypot(mouseX - this.x, mouseY - this.y);
+    const fadeRadius = 150 * this.scale;
+    if (dist < fadeRadius) {
+      const factor = Math.max(0, dist / fadeRadius);
+      this.targetAlpha = 0.06 + factor * 0.94;
+    } else {
+      this.targetAlpha = 1.0;
+    }
+    this.currentAlpha += (this.targetAlpha - this.currentAlpha) * Math.min(0.22 * dt, 1);
   }
 
   public render(ctx: CanvasRenderingContext2D): void {
-    if (!this.offscreenCanvas) return;
+    if (!this.offscreenCanvas || this.currentAlpha <= 0.02) return;
 
     ctx.save();
+    ctx.globalAlpha = this.currentAlpha;
 
     const r = this.nativeR;
     const pad = 14;

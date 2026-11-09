@@ -12,6 +12,8 @@ interface Lantern {
   swayAmplitude: number;
   paletteIndex: number;
   depth: number;
+  currentAlpha: number;
+  targetAlpha: number;
 }
 
 const LANTERN_PALETTES = [
@@ -138,15 +140,28 @@ export class LanternsRenderer {
       swayAmplitude: (14 + Math.random() * 20) * this.options.sway * depth,
       paletteIndex,
       depth,
+      currentAlpha: 1.0,
+      targetAlpha: 1.0,
     };
   }
 
-  public update(width: number, height: number, dt = 1): void {
+  public update(width: number, height: number, mouseX = -999, mouseY = -999, dt = 1): void {
     for (let i = 0; i < this.lanterns.length; i++) {
       const l = this.lanterns[i];
       l.swayPhase += l.swaySpeed * dt;
       l.x = l.baseX + Math.sin(l.swayPhase) * l.swayAmplitude;
       l.y += l.vy * dt;
+
+      // Mouse proximity transparency
+      const dist = Math.hypot(mouseX - l.x, mouseY - l.y);
+      const fadeRadius = 90 * l.depth;
+      if (dist < fadeRadius) {
+        const factor = Math.max(0, dist / fadeRadius);
+        l.targetAlpha = 0.08 + factor * 0.92;
+      } else {
+        l.targetAlpha = 1.0;
+      }
+      l.currentAlpha += (l.targetAlpha - l.currentAlpha) * Math.min(0.25 * dt, 1);
 
       if (l.y < -l.height * 2) {
         if (this.options.continuous) {
@@ -164,11 +179,13 @@ export class LanternsRenderer {
 
     ctx.save();
     for (const l of this.lanterns) {
+      if (l.currentAlpha <= 0.02) continue;
+
       const sprite = this.spriteCanvases[l.paletteIndex];
       if (!sprite) continue;
 
       ctx.save();
-      ctx.globalAlpha = 0.88 * l.depth;
+      ctx.globalAlpha = 0.88 * l.depth * l.currentAlpha;
       const drawW = l.width * 2.1;
       const drawH = l.height * 1.85;
       ctx.drawImage(sprite, l.x - drawW / 2, l.y - drawH / 2, drawW, drawH);

@@ -479,9 +479,9 @@ export class DiwaliEngine {
       this.canvasMgr.clear();
 
       // Render order:
-      // 1. Background sky lanterns
+      // 1. Background sky lanterns (with mouse proximity transparency)
       if (this.lanternsRenderer) {
-        this.lanternsRenderer.update(w, h, dt);
+        this.lanternsRenderer.update(w, h, this.mouse.x, this.mouse.y, dt);
         this.lanternsRenderer.render(ctx);
       }
 
@@ -511,15 +511,15 @@ export class DiwaliEngine {
       this.phuljhadiRenderer.update(dt);
       this.phuljhadiRenderer.render(ctx);
 
-      // 7. Foreground Diyas (Bottom of screen)
+      // 7. Foreground Diyas (Bottom of screen with mouse proximity transparency)
       if (this.diyasRenderer) {
-        this.diyasRenderer.update(w, h, dt);
+        this.diyasRenderer.update(w, h, this.mouse.x, this.mouse.y, dt);
         this.diyasRenderer.render(ctx);
       }
 
-      // 7b. Traditional Rangoli (Bottom-right floor art)
+      // 7b. Traditional Rangoli (Bottom-right floor art with mouse proximity transparency)
       if (this.rangoliRenderer) {
-        this.rangoliRenderer.update(dt);
+        this.rangoliRenderer.update(this.mouse.x, this.mouse.y, dt);
         this.rangoliRenderer.render(ctx);
       }
 

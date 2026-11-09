@@ -8,7 +8,7 @@ export declare class DiyasRenderer {
     constructor(options?: DiyasOptions);
     private createOffscreenDiya;
     init(width: number, height: number): void;
-    update(_width: number, _height: number, dt?: number): void;
+    update(_width: number, _height: number, mouseX?: number, mouseY?: number, dt?: number): void;
     render(ctx: CanvasRenderingContext2D): void;
     clear(): void;
 }

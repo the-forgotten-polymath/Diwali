@@ -88,10 +88,10 @@ class B {
         t(this.width, this.height, this.dpr);
     });
     this.customDpr = r, e ? (this.canvas = e, this.isCreatedInternally = !1) : (this.canvas = document.createElement("canvas"), this.isCreatedInternally = !0, this.canvas.style.position = a ? "absolute" : "fixed", this.canvas.style.top = "0", this.canvas.style.left = "0", this.canvas.style.width = "100%", this.canvas.style.height = "100%", this.canvas.style.pointerEvents = "none", this.canvas.style.zIndex = String(t), this.canvas.setAttribute("aria-hidden", "true"), this.canvas.setAttribute("role", "presentation"), this.parentContainer = a || document.body, this.parentContainer.appendChild(this.canvas));
-    const i = this.canvas.getContext("2d");
-    if (!i)
+    const h = this.canvas.getContext("2d");
+    if (!h)
       throw new Error("[diwali-animations] Unable to obtain 2D rendering context from canvas.");
-    this.ctx = i, this.updateDimensions(), this.setupListeners();
+    this.ctx = h, this.updateDimensions(), this.setupListeners();
   }
   getCanvas() {
     return this.canvas;
@@ -155,10 +155,10 @@ class U {
     this.resumeIfSuspended();
     const a = this.ctx.currentTime, t = this.ctx.createOscillator(), r = this.ctx.createGain();
     t.type = "sine", t.frequency.setValueAtTime(380, a), t.frequency.exponentialRampToValueAtTime(1800, a + e), r.gain.setValueAtTime(1e-3, a), r.gain.linearRampToValueAtTime(0.18, a + 0.1), r.gain.exponentialRampToValueAtTime(1e-3, a + e), t.connect(r), r.connect(this.masterGain), t.start(a), t.stop(a + e);
-    const i = this.createFilteredNoise(e, 800, 2);
-    if (i) {
+    const h = this.createFilteredNoise(e, 800, 2);
+    if (h) {
       const s = this.ctx.createGain();
-      s.gain.setValueAtTime(0.08, a), s.gain.exponentialRampToValueAtTime(1e-3, a + e), i.output.connect(s), s.connect(this.masterGain), i.source.start(a), i.source.stop(a + e);
+      s.gain.setValueAtTime(0.08, a), s.gain.exponentialRampToValueAtTime(1e-3, a + e), h.output.connect(s), s.connect(this.masterGain), h.source.start(a), h.source.stop(a + e);
     }
   }
   /**
@@ -174,12 +174,12 @@ class U {
       const s = this.ctx.createGain();
       s.gain.setValueAtTime(0.4, e), s.gain.exponentialRampToValueAtTime(1e-3, e + 0.12), r.output.connect(s), s.connect(this.masterGain), r.source.start(e), r.source.stop(e + 0.13);
     }
-    const i = 5 + Math.floor(Math.random() * 5);
-    for (let s = 0; s < i; s++) {
-      const h = 0.12 + Math.random() * 0.35;
+    const h = 5 + Math.floor(Math.random() * 5);
+    for (let s = 0; s < h; s++) {
+      const i = 0.12 + Math.random() * 0.35;
       setTimeout(() => {
         this.playMicroSnap(0.08, 0.12);
-      }, h * 1e3);
+      }, i * 1e3);
     }
   }
   /**
@@ -196,8 +196,8 @@ class U {
     this.resumeIfSuspended();
     const a = this.ctx.currentTime, t = this.ctx.createOscillator(), r = this.ctx.createGain();
     t.type = "sawtooth", t.frequency.setValueAtTime(200, a), t.frequency.linearRampToValueAtTime(480, a + 1.2), t.frequency.linearRampToValueAtTime(160, a + e);
-    const i = this.ctx.createOscillator(), s = this.ctx.createGain();
-    i.type = "sine", i.frequency.setValueAtTime(18, a), i.frequency.linearRampToValueAtTime(28, a + 1.5), i.frequency.linearRampToValueAtTime(8, a + e), s.gain.setValueAtTime(0.05, a), i.connect(s.gain), t.connect(r), r.connect(this.masterGain), r.gain.setValueAtTime(0.01, a), r.gain.linearRampToValueAtTime(0.12, a + 0.3), r.gain.exponentialRampToValueAtTime(1e-3, a + e), t.start(a), i.start(a), t.stop(a + e), i.stop(a + e), this.playNoiseCrackle(e, 0.12, 2200);
+    const h = this.ctx.createOscillator(), s = this.ctx.createGain();
+    h.type = "sine", h.frequency.setValueAtTime(18, a), h.frequency.linearRampToValueAtTime(28, a + 1.5), h.frequency.linearRampToValueAtTime(8, a + e), s.gain.setValueAtTime(0.05, a), h.connect(s.gain), t.connect(r), r.connect(this.masterGain), r.gain.setValueAtTime(0.01, a), r.gain.linearRampToValueAtTime(0.12, a + 0.3), r.gain.exponentialRampToValueAtTime(1e-3, a + e), t.start(a), h.start(a), t.stop(a + e), h.stop(a + e), this.playNoiseCrackle(e, 0.12, 2200);
   }
   /**
    * 🏺 Anar (Flowerpot Fountain): Roaring volcanic jet with continuous crackling embers
@@ -226,25 +226,25 @@ class U {
     if (!this.ctx || !this.masterGain) return;
     const t = this.ctx.currentTime, r = this.createFilteredNoise(e, 2500 + Math.random() * 1500, 2.5);
     if (!r) return;
-    const i = this.ctx.createGain();
-    i.gain.setValueAtTime(a, t), i.gain.exponentialRampToValueAtTime(1e-3, t + e), r.output.connect(i), i.connect(this.masterGain), r.source.start(t), r.source.stop(t + e);
+    const h = this.ctx.createGain();
+    h.gain.setValueAtTime(a, t), h.gain.exponentialRampToValueAtTime(1e-3, t + e), r.output.connect(h), h.connect(this.masterGain), r.source.start(t), r.source.stop(t + e);
   }
   playNoiseCrackle(e, a, t = 1400) {
     if (!this.ctx || !this.masterGain) return;
-    const r = this.ctx.currentTime, i = this.createFilteredNoise(e, t, 1.8);
-    if (!i) return;
+    const r = this.ctx.currentTime, h = this.createFilteredNoise(e, t, 1.8);
+    if (!h) return;
     const s = this.ctx.createGain();
-    s.gain.setValueAtTime(0.01, r), s.gain.linearRampToValueAtTime(a, r + 0.3), s.gain.exponentialRampToValueAtTime(1e-3, r + e), i.output.connect(s), s.connect(this.masterGain), i.source.start(r), i.source.stop(r + e);
+    s.gain.setValueAtTime(0.01, r), s.gain.linearRampToValueAtTime(a, r + 0.3), s.gain.exponentialRampToValueAtTime(1e-3, r + e), h.output.connect(s), s.connect(this.masterGain), h.source.start(r), h.source.stop(r + e);
   }
   createFilteredNoise(e, a, t) {
     if (!this.ctx) return null;
-    const r = Math.floor(this.ctx.sampleRate * Math.min(e, 5)), i = this.ctx.createBuffer(1, r, this.ctx.sampleRate), s = i.getChannelData(0);
+    const r = Math.floor(this.ctx.sampleRate * Math.min(e, 5)), h = this.ctx.createBuffer(1, r, this.ctx.sampleRate), s = h.getChannelData(0);
     for (let n = 0; n < r; n++)
       s[n] = Math.random() * 2 - 1;
-    const h = this.ctx.createBufferSource();
-    h.buffer = i;
-    const l = this.ctx.createBiquadFilter();
-    return l.type = "bandpass", l.frequency.setValueAtTime(a, this.ctx.currentTime), l.Q.setValueAtTime(t, this.ctx.currentTime), h.connect(l), { source: h, output: l };
+    const i = this.ctx.createBufferSource();
+    i.buffer = h;
+    const c = this.ctx.createBiquadFilter();
+    return c.type = "bandpass", c.frequency.setValueAtTime(a, this.ctx.currentTime), c.Q.setValueAtTime(t, this.ctx.currentTime), i.connect(c), { source: i, output: c };
   }
 }
 class q {
@@ -278,11 +278,11 @@ class q {
       this.isDown = !1;
     });
     o(this, "handleClick", (e) => {
-      var i, s, h, l;
+      var h, s, i, c;
       const a = e.target;
       if (a && a.closest("button, input, select, a, .control-dock, .side-panel"))
         return;
-      const t = "clientX" in e ? e.clientX : ((s = (i = e.changedTouches) == null ? void 0 : i[0]) == null ? void 0 : s.clientX) ?? this.x, r = "clientY" in e ? e.clientY : ((l = (h = e.changedTouches) == null ? void 0 : h[0]) == null ? void 0 : l.clientY) ?? this.y;
+      const t = "clientX" in e ? e.clientX : ((s = (h = e.changedTouches) == null ? void 0 : h[0]) == null ? void 0 : s.clientX) ?? this.x, r = "clientY" in e ? e.clientY : ((c = (i = e.changedTouches) == null ? void 0 : i[0]) == null ? void 0 : c.clientY) ?? this.y;
       for (const n of this.clickListeners)
         n(t, r, e);
     });
@@ -342,22 +342,22 @@ class Q {
     if (typeof document > "u") return;
     const a = e, t = Math.ceil(70 * a), r = Math.ceil(65 * a);
     this.diyaW = t, this.diyaH = r;
-    const i = document.createElement("canvas");
-    i.width = t, i.height = r;
-    const s = i.getContext("2d");
+    const h = document.createElement("canvas");
+    h.width = t, h.height = r;
+    const s = h.getContext("2d");
     if (!s) return;
-    const h = t / 2, l = r - 14 * a, n = s.createRadialGradient(h, l - 14 * a, 2, h, l - 14 * a, 30 * a);
-    n.addColorStop(0, "rgba(255, 179, 0, 0.45)"), n.addColorStop(0.5, "rgba(255, 109, 0, 0.15)"), n.addColorStop(1, "rgba(255, 87, 34, 0)"), s.fillStyle = n, s.beginPath(), s.arc(h, l - 14 * a, 30 * a, 0, Math.PI * 2), s.fill();
-    const c = s.createLinearGradient(h, l - 6 * a, h, l + 14 * a);
-    c.addColorStop(0, "#D95D28"), c.addColorStop(0.6, "#A73812"), c.addColorStop(1, "#661F04"), s.fillStyle = c, s.beginPath(), s.moveTo(h - 22 * a, l), s.bezierCurveTo(h - 20 * a, l + 14 * a, h + 20 * a, l + 14 * a, h + 22 * a, l), s.bezierCurveTo(h + 15 * a, l + 4 * a, h - 15 * a, l + 4 * a, h - 22 * a, l), s.fill();
-    const d = s.createLinearGradient(h - 22 * a, 0, h + 22 * a, 0);
-    d.addColorStop(0, "#8A2D09"), d.addColorStop(0.5, "#F9A825"), d.addColorStop(1, "#8A2D09"), s.strokeStyle = d, s.lineWidth = 2.4 * a, s.beginPath(), s.ellipse(h, l, 22 * a, 5 * a, 0, 0, Math.PI * 2), s.stroke();
-    const f = s.createRadialGradient(h, l, 0, h, l, 18 * a);
-    f.addColorStop(0, "#FFE082"), f.addColorStop(0.7, "#D35400"), f.addColorStop(1, "#78281F"), s.fillStyle = f, s.beginPath(), s.ellipse(h, l, 18 * a, 4.5 * a, 0, 0, Math.PI * 2), s.fill(), s.strokeStyle = "#2C3E50", s.lineWidth = 2 * a, s.beginPath(), s.moveTo(h, l + 1 * a), s.lineTo(h, l - 6 * a), s.stroke();
-    const u = s.createLinearGradient(h, l - 6 * a, h, l - 30 * a);
-    u.addColorStop(0, "#FF4500"), u.addColorStop(0.35, "#FF8C00"), u.addColorStop(0.85, "#FFD700"), u.addColorStop(1, "rgba(255, 240, 180, 0.9)"), s.fillStyle = u, s.beginPath(), s.moveTo(h - 5.5 * a, l - 6 * a), s.bezierCurveTo(h - 7 * a, l - 12 * a, h - 2 * a, l - 25 * a, h, l - 30 * a), s.bezierCurveTo(h + 2 * a, l - 25 * a, h + 7 * a, l - 12 * a, h + 5.5 * a, l - 6 * a), s.closePath(), s.fill();
-    const m = s.createLinearGradient(h, l - 6 * a, h, l - 22 * a);
-    m.addColorStop(0, "#00E5FF"), m.addColorStop(0.25, "#FFFFFF"), m.addColorStop(1, "#FFF59D"), s.fillStyle = m, s.beginPath(), s.moveTo(h - 2.8 * a, l - 6 * a), s.bezierCurveTo(h - 3.5 * a, l - 10 * a, h - 1 * a, l - 18 * a, h, l - 22 * a), s.bezierCurveTo(h + 1 * a, l - 18 * a, h + 3.5 * a, l - 10 * a, h + 2.8 * a, l - 6 * a), s.closePath(), s.fill(), this.offscreenDiya = i;
+    const i = t / 2, c = r - 14 * a, n = s.createRadialGradient(i, c - 14 * a, 2, i, c - 14 * a, 30 * a);
+    n.addColorStop(0, "rgba(255, 179, 0, 0.45)"), n.addColorStop(0.5, "rgba(255, 109, 0, 0.15)"), n.addColorStop(1, "rgba(255, 87, 34, 0)"), s.fillStyle = n, s.beginPath(), s.arc(i, c - 14 * a, 30 * a, 0, Math.PI * 2), s.fill();
+    const l = s.createLinearGradient(i, c - 6 * a, i, c + 14 * a);
+    l.addColorStop(0, "#D95D28"), l.addColorStop(0.6, "#A73812"), l.addColorStop(1, "#661F04"), s.fillStyle = l, s.beginPath(), s.moveTo(i - 22 * a, c), s.bezierCurveTo(i - 20 * a, c + 14 * a, i + 20 * a, c + 14 * a, i + 22 * a, c), s.bezierCurveTo(i + 15 * a, c + 4 * a, i - 15 * a, c + 4 * a, i - 22 * a, c), s.fill();
+    const d = s.createLinearGradient(i - 22 * a, 0, i + 22 * a, 0);
+    d.addColorStop(0, "#8A2D09"), d.addColorStop(0.5, "#F9A825"), d.addColorStop(1, "#8A2D09"), s.strokeStyle = d, s.lineWidth = 2.4 * a, s.beginPath(), s.ellipse(i, c, 22 * a, 5 * a, 0, 0, Math.PI * 2), s.stroke();
+    const f = s.createRadialGradient(i, c, 0, i, c, 18 * a);
+    f.addColorStop(0, "#FFE082"), f.addColorStop(0.7, "#D35400"), f.addColorStop(1, "#78281F"), s.fillStyle = f, s.beginPath(), s.ellipse(i, c, 18 * a, 4.5 * a, 0, 0, Math.PI * 2), s.fill(), s.strokeStyle = "#2C3E50", s.lineWidth = 2 * a, s.beginPath(), s.moveTo(i, c + 1 * a), s.lineTo(i, c - 6 * a), s.stroke();
+    const u = s.createLinearGradient(i, c - 6 * a, i, c - 30 * a);
+    u.addColorStop(0, "#FF4500"), u.addColorStop(0.35, "#FF8C00"), u.addColorStop(0.85, "#FFD700"), u.addColorStop(1, "rgba(255, 240, 180, 0.9)"), s.fillStyle = u, s.beginPath(), s.moveTo(i - 5.5 * a, c - 6 * a), s.bezierCurveTo(i - 7 * a, c - 12 * a, i - 2 * a, c - 25 * a, i, c - 30 * a), s.bezierCurveTo(i + 2 * a, c - 25 * a, i + 7 * a, c - 12 * a, i + 5.5 * a, c - 6 * a), s.closePath(), s.fill();
+    const m = s.createLinearGradient(i, c - 6 * a, i, c - 22 * a);
+    m.addColorStop(0, "#00E5FF"), m.addColorStop(0.25, "#FFFFFF"), m.addColorStop(1, "#FFF59D"), s.fillStyle = m, s.beginPath(), s.moveTo(i - 2.8 * a, c - 6 * a), s.bezierCurveTo(i - 3.5 * a, c - 10 * a, i - 1 * a, c - 18 * a, i, c - 22 * a), s.bezierCurveTo(i + 1 * a, c - 18 * a, i + 3.5 * a, c - 10 * a, i + 2.8 * a, c - 6 * a), s.closePath(), s.fill(), this.offscreenDiya = h;
   }
   init(e, a) {
     this.diyas = [], this.createOffscreenDiya(this.options.scale);
@@ -372,38 +372,52 @@ class Q {
           flamePhase: Math.random() * Math.PI * 2,
           flickerSpeed: (0.08 + Math.random() * 0.05) * this.options.flickerSpeed,
           floatPhase: Math.random() * Math.PI * 2,
-          floatSpeed: 0.02 + Math.random() * 0.02
+          floatSpeed: 0.02 + Math.random() * 0.02,
+          currentAlpha: 1,
+          targetAlpha: 1
         });
       return;
     }
-    const r = e / (t + 1), i = typeof this.options.clearCorners == "number" ? this.options.clearCorners : this.options.clearCorners ? 1 : 0;
+    const r = e / (t + 1), h = typeof this.options.clearCorners == "number" ? this.options.clearCorners : this.options.clearCorners ? 1 : 0;
     for (let s = 0; s < t; s++) {
-      if (i > 0 && (s < i || s >= t - i))
+      if (h > 0 && (s < h || s >= t - h))
         continue;
-      const h = r * (s + 1), n = this.options.mode === "docked" ? a - 34 * this.options.scale : a * 0.75 + Math.sin(s) * 20;
+      const i = r * (s + 1), n = this.options.mode === "docked" ? a - 34 * this.options.scale : a * 0.75 + Math.sin(s) * 20;
       this.diyas.push({
-        x: h,
+        x: i,
         y: n,
         baseY: n,
         scale: this.options.scale,
         flamePhase: Math.random() * Math.PI * 2,
         flickerSpeed: (0.07 + Math.random() * 0.04) * this.options.flickerSpeed,
         floatPhase: s / t * Math.PI * 2,
-        floatSpeed: 0.02 + Math.random() * 0.015
+        floatSpeed: 0.02 + Math.random() * 0.015,
+        currentAlpha: 1,
+        targetAlpha: 1
       });
     }
   }
-  update(e, a, t = 1) {
-    const r = this.options.mode === "floating";
-    for (const i of this.diyas)
-      i.flamePhase += i.flickerSpeed * this.options.speed * t, r && (i.floatPhase += i.floatSpeed * this.options.speed * t, i.y = i.baseY + Math.sin(i.floatPhase) * 6);
+  update(e, a, t = -999, r = -999, h = 1) {
+    const s = this.options.mode === "floating";
+    for (const i of this.diyas) {
+      i.flamePhase += i.flickerSpeed * this.options.speed * h, s && (i.floatPhase += i.floatSpeed * this.options.speed * h, i.y = i.baseY + Math.sin(i.floatPhase) * 6);
+      const c = Math.hypot(t - i.x, r - i.y), n = 120 * i.scale;
+      if (c < n) {
+        const l = Math.max(0, c / n);
+        i.targetAlpha = 0.06 + l * 0.94;
+      } else
+        i.targetAlpha = 1;
+      i.currentAlpha += (i.targetAlpha - i.currentAlpha) * Math.min(0.22 * h, 1);
+    }
   }
   render(e) {
     if (!this.offscreenDiya) return;
     e.save();
     const a = this.diyaW / 2, t = this.diyaH;
     for (const r of this.diyas) {
-      const i = Math.sin(r.flamePhase) * 0.08, s = t * (1 + i);
+      if (r.currentAlpha <= 0.02) continue;
+      e.globalAlpha = r.currentAlpha;
+      const h = Math.sin(r.flamePhase) * 0.08, s = t * (1 + h);
       e.drawImage(
         this.offscreenDiya,
         r.x - a,
@@ -499,35 +513,35 @@ class H {
    * 💥 BLAST AT: Direct instantaneous rocket targeting (x, y) like fireworks-js!
    */
   blastAt(e, a) {
-    const t = window.innerWidth, r = window.innerHeight, i = Math.max(20, Math.min(t - 20, e + (Math.random() - 0.5) * 80)), s = r + 5, h = e - i, l = a - s, n = Math.hypot(h, l), c = Math.atan2(l, h), d = 14 * this.options.speed, f = this.options.colors[Math.floor(Math.random() * this.options.colors.length)];
+    const t = window.innerWidth, r = window.innerHeight, h = Math.max(20, Math.min(t - 20, e + (Math.random() - 0.5) * 80)), s = r + 5, i = e - h, c = a - s, n = Math.hypot(i, c), l = Math.atan2(c, i), d = 14 * this.options.speed, f = this.options.colors[Math.floor(Math.random() * this.options.colors.length)];
     this.rockets.push({
-      startX: i,
+      startX: h,
       startY: s,
-      x: i,
+      x: h,
       y: s,
       targetX: e,
       targetY: a,
       totalDistance: n,
       currentDistance: 0,
-      angle: c,
+      angle: l,
       speed: d,
       acceleration: 1.04,
       color: f,
-      coords: [[i, s], [i, s], [i, s]],
+      coords: [[h, s], [h, s], [h, s]],
       exploded: !1,
       homing: !0
       // Smoothly tracks moving cursor in flight
     }), this.options.sound && this.sound.playRocketWhistle();
   }
-  launch(e = this.options.count, a, t, r, i, s = !1) {
-    const h = window.innerWidth, l = window.innerHeight;
+  launch(e = this.options.count, a, t, r, h, s = !1) {
+    const i = window.innerWidth, c = window.innerHeight;
     for (let n = 0; n < e; n++)
       setTimeout(() => {
-        const c = a !== void 0 ? a : (0.08 + Math.random() * 0.84) * h, d = t !== void 0 ? t : l + 5, f = r !== void 0 ? r : c + (Math.random() - 0.5) * 180, u = i !== void 0 ? i : (0.12 + Math.random() * 0.32) * l, m = f - c, g = u - d, v = Math.hypot(m, g), M = Math.atan2(g, m), F = (9.5 + Math.random() * 3.5) * this.options.speed, A = this.options.colors[Math.floor(Math.random() * this.options.colors.length)];
+        const l = a !== void 0 ? a : (0.08 + Math.random() * 0.84) * i, d = t !== void 0 ? t : c + 5, f = r !== void 0 ? r : l + (Math.random() - 0.5) * 180, u = h !== void 0 ? h : (0.12 + Math.random() * 0.32) * c, m = f - l, g = u - d, v = Math.hypot(m, g), M = Math.atan2(g, m), F = (9.5 + Math.random() * 3.5) * this.options.speed, w = this.options.colors[Math.floor(Math.random() * this.options.colors.length)];
         this.rockets.push({
-          startX: c,
+          startX: l,
           startY: d,
-          x: c,
+          x: l,
           y: d,
           targetX: f,
           targetY: u,
@@ -536,8 +550,8 @@ class H {
           angle: M,
           speed: F,
           acceleration: 1.025,
-          color: A,
-          coords: [[c, d], [c, d], [c, d]],
+          color: w,
+          coords: [[l, d], [l, d], [l, d]],
           exploded: !1,
           homing: s
         }), this.options.sound && this.sound.playRocketWhistle();
@@ -558,37 +572,37 @@ class H {
     this.isContinuous = !1, this.spawnInterval && (clearTimeout(this.spawnInterval), this.spawnInterval = null);
   }
   update(e = 1) {
-    var l;
+    var c;
     const a = window.innerWidth || 1440, t = window.innerHeight || 900;
     this.mouseFollow && this.mouse && this.mouse.x > 0 && this.mouse.y > 0 && (this.mouseMoveCooldown -= e, Math.hypot(this.mouse.x - this.lastMouseX, this.mouse.y - this.lastMouseY) > 8 && (this.lastMouseX = this.mouse.x, this.lastMouseY = this.mouse.y, this.mouseMoveCooldown <= 0 && this.rockets.length < 3 && (this.mouseMoveCooldown = 22, this.blastAt(this.mouse.x, this.mouse.y))));
     for (const n of this.ambientStardust)
       n.phase += 0.03 * e, n.x += (n.vx + Math.sin(n.phase) * 0.12) * e, n.y += n.vy * e, n.y < -10 && (n.y = t + 5, n.x = Math.random() * a), n.x < -10 && (n.x = a + 5), n.x > a + 10 && (n.x = -5);
     for (let n = this.rockets.length - 1; n >= 0; n--) {
-      const c = this.rockets[n];
-      if (c.homing && this.mouse && this.mouse.x > 0) {
-        c.targetX = this.mouse.x, c.targetY = this.mouse.y;
-        const m = c.targetX - c.x, g = c.targetY - c.y;
-        let M = Math.atan2(g, m) - c.angle;
+      const l = this.rockets[n];
+      if (l.homing && this.mouse && this.mouse.x > 0) {
+        l.targetX = this.mouse.x, l.targetY = this.mouse.y;
+        const m = l.targetX - l.x, g = l.targetY - l.y;
+        let M = Math.atan2(g, m) - l.angle;
         for (; M > Math.PI; ) M -= Math.PI * 2;
         for (; M < -Math.PI; ) M += Math.PI * 2;
-        c.angle += M * Math.min(0.14 * e, 1), c.totalDistance = Math.hypot(c.targetX - c.startX, c.targetY - c.startY);
+        l.angle += M * Math.min(0.14 * e, 1), l.totalDistance = Math.hypot(l.targetX - l.startX, l.targetY - l.startY);
       }
-      c.coords.pop(), c.coords.unshift([c.x, c.y]), c.speed *= Math.min(1.05, 1 + (c.acceleration - 1) * e);
-      const d = Math.cos(c.angle) * c.speed, f = Math.sin(c.angle) * c.speed;
-      c.x += d * e, c.y += f * e, c.currentDistance = Math.hypot(c.x - c.startX, c.y - c.startY);
-      const u = Math.hypot(c.targetX - c.x, c.targetY - c.y);
-      (c.currentDistance >= c.totalDistance || u <= 24 || c.y <= c.targetY) && (this.explodeRocket(c), this.rockets.splice(n, 1));
+      l.coords.pop(), l.coords.unshift([l.x, l.y]), l.speed *= Math.min(1.05, 1 + (l.acceleration - 1) * e);
+      const d = Math.cos(l.angle) * l.speed, f = Math.sin(l.angle) * l.speed;
+      l.x += d * e, l.y += f * e, l.currentDistance = Math.hypot(l.x - l.startX, l.y - l.startY);
+      const u = Math.hypot(l.targetX - l.x, l.targetY - l.y);
+      (l.currentDistance >= l.totalDistance || u <= 24 || l.y <= l.targetY) && (this.explodeRocket(l), this.rockets.splice(n, 1));
     }
-    const r = Math.max(0.85, 1 - (1 - 0.95) * e), i = Math.max(0.92, 1 - (1 - 0.985) * e), s = this.options.gravity * e, h = this.options.speed * e;
+    const r = Math.max(0.85, 1 - (1 - 0.95) * e), h = Math.max(0.92, 1 - (1 - 0.985) * e), s = this.options.gravity * e, i = this.options.speed * e;
     for (let n = this.activeSparks.length - 1; n >= 0; n--) {
-      const c = this.activeSparks[n];
-      c.prevX = c.x, c.prevY = c.y;
-      const d = (l = c.customData) == null ? void 0 : l.drifting, f = d ? i : r;
-      c.vx *= f, c.vy = c.vy * f + (d ? 0.02 * e : s), c.x += c.vx * h, c.y += c.vy * h, c.life += e, c.alpha = Math.max(0, 1 - c.life / c.maxLife), (c.life >= c.maxLife || c.alpha <= 0.01) && (this.pool.release(c), this.activeSparks.splice(n, 1));
+      const l = this.activeSparks[n];
+      l.prevX = l.x, l.prevY = l.y;
+      const d = (c = l.customData) == null ? void 0 : c.drifting, f = d ? h : r;
+      l.vx *= f, l.vy = l.vy * f + (d ? 0.02 * e : s), l.x += l.vx * i, l.y += l.vy * i, l.life += e, l.alpha = Math.max(0, 1 - l.life / l.maxLife), (l.life >= l.maxLife || l.alpha <= 0.01) && (this.pool.release(l), this.activeSparks.splice(n, 1));
     }
     if (this.activeSparks.length > 400) {
       const n = this.activeSparks.length - 400;
-      for (let c = 0; c < n; c++) {
+      for (let l = 0; l < n; l++) {
         const d = this.activeSparks.shift();
         d && this.pool.release(d);
       }
@@ -598,25 +612,25 @@ class H {
     this.options.sound && this.sound.playExplosion();
     let a = this.options.burstParticles;
     this.reducedMotion ? a = Math.round(a * 0.35) : this.lowEndMode && (a = Math.round(a * 0.55));
-    const t = e.color, r = this.options.colors[Math.floor(Math.random() * this.options.colors.length)], i = Math.floor(Math.random() * 4);
-    if (i === 1)
+    const t = e.color, r = this.options.colors[Math.floor(Math.random() * this.options.colors.length)], h = Math.floor(Math.random() * 4);
+    if (h === 1)
       for (let s = 0; s < a; s++) {
-        const h = this.pool.acquire(), l = Math.random() * Math.PI * 2, n = (2.5 + Math.random() * 4.5) * this.options.spread;
-        h.x = e.x, h.y = e.y, h.prevX = e.x, h.prevY = e.y, h.vx = Math.cos(l) * n, h.vy = Math.sin(l) * n, h.color = Math.random() > 0.3 ? "#FFD700" : "#FFF9C4", h.size = 2, h.initialSize = h.size, h.alpha = 1, h.maxLife = 65 + Math.random() * 35, h.drag = 0.975, this.activeSparks.push(h);
+        const i = this.pool.acquire(), c = Math.random() * Math.PI * 2, n = (2.5 + Math.random() * 4.5) * this.options.spread;
+        i.x = e.x, i.y = e.y, i.prevX = e.x, i.prevY = e.y, i.vx = Math.cos(c) * n, i.vy = Math.sin(c) * n, i.color = Math.random() > 0.3 ? "#FFD700" : "#FFF9C4", i.size = 2, i.initialSize = i.size, i.alpha = 1, i.maxLife = 65 + Math.random() * 35, i.drag = 0.975, this.activeSparks.push(i);
       }
-    else if (i === 2)
+    else if (h === 2)
       for (let s = 0; s < a; s++) {
-        const h = this.pool.acquire(), l = s < a * 0.25, n = l ? Math.random() * Math.PI * 2 : s / a * Math.PI * 2, c = l ? 1.2 + Math.random() * 2 : 4.5;
-        h.x = e.x, h.y = e.y, h.prevX = e.x, h.prevY = e.y, h.vx = Math.cos(n) * c, h.vy = Math.sin(n) * c, h.color = l ? r : t, h.size = 2, h.initialSize = h.size, h.alpha = 1, h.maxLife = 48 + Math.random() * 20, h.drag = 0.94, this.activeSparks.push(h);
+        const i = this.pool.acquire(), c = s < a * 0.25, n = c ? Math.random() * Math.PI * 2 : s / a * Math.PI * 2, l = c ? 1.2 + Math.random() * 2 : 4.5;
+        i.x = e.x, i.y = e.y, i.prevX = e.x, i.prevY = e.y, i.vx = Math.cos(n) * l, i.vy = Math.sin(n) * l, i.color = c ? r : t, i.size = 2, i.initialSize = i.size, i.alpha = 1, i.maxLife = 48 + Math.random() * 20, i.drag = 0.94, this.activeSparks.push(i);
       }
     else
       for (let s = 0; s < a; s++) {
-        const h = this.pool.acquire(), l = Math.random() * Math.PI * 2, n = (2 + Math.random() * 4) * this.options.spread;
-        h.x = e.x, h.y = e.y, h.prevX = e.x, h.prevY = e.y, h.vx = Math.cos(l) * n, h.vy = Math.sin(l) * n, h.color = s % 2 === 0 ? t : r, h.size = 2, h.initialSize = h.size, h.alpha = 1, h.maxLife = 45 + Math.random() * 28, h.drag = 0.95, this.activeSparks.push(h);
+        const i = this.pool.acquire(), c = Math.random() * Math.PI * 2, n = (2 + Math.random() * 4) * this.options.spread;
+        i.x = e.x, i.y = e.y, i.prevX = e.x, i.prevY = e.y, i.vx = Math.cos(c) * n, i.vy = Math.sin(c) * n, i.color = s % 2 === 0 ? t : r, i.size = 2, i.initialSize = i.size, i.alpha = 1, i.maxLife = 45 + Math.random() * 28, i.drag = 0.95, this.activeSparks.push(i);
       }
     for (let s = 0; s < 12; s++) {
-      const h = this.pool.acquire(), l = Math.random() * Math.PI * 2, n = 1.5 + Math.random() * 5;
-      h.x = e.x, h.y = e.y, h.prevX = e.x, h.prevY = e.y, h.vx = Math.cos(l) * n, h.vy = Math.sin(l) * n * 0.4 - 0.3, h.color = "#FFD700", h.size = 1.2, h.initialSize = h.size, h.alpha = 0.85, h.maxLife = 75 + Math.random() * 40, h.drag = 0.985, h.customData = { drifting: !0 }, this.activeSparks.push(h);
+      const i = this.pool.acquire(), c = Math.random() * Math.PI * 2, n = 1.5 + Math.random() * 5;
+      i.x = e.x, i.y = e.y, i.prevX = e.x, i.prevY = e.y, i.vx = Math.cos(c) * n, i.vy = Math.sin(c) * n * 0.4 - 0.3, i.color = "#FFD700", i.size = 1.2, i.initialSize = i.size, i.alpha = 0.85, i.maxLife = 75 + Math.random() * 40, i.drag = 0.985, i.customData = { drifting: !0 }, this.activeSparks.push(i);
     }
   }
   render(e) {
@@ -625,8 +639,8 @@ class H {
       e.globalAlpha = a.alpha, e.beginPath(), e.arc(a.x, a.y, a.size, 0, Math.PI * 2), e.fill();
     e.lineCap = "round";
     for (const a of this.rockets) {
-      const t = a.coords.length - 1, r = a.coords[t][0], i = a.coords[t][1];
-      e.strokeStyle = a.color, e.lineWidth = 2.5, e.globalAlpha = 0.85, e.beginPath(), e.moveTo(r, i), e.lineTo(a.x, a.y), e.stroke(), e.fillStyle = "#FFFFFF", e.globalAlpha = 1, e.beginPath(), e.arc(a.x, a.y, 2.2, 0, Math.PI * 2), e.fill();
+      const t = a.coords.length - 1, r = a.coords[t][0], h = a.coords[t][1];
+      e.strokeStyle = a.color, e.lineWidth = 2.5, e.globalAlpha = 0.85, e.beginPath(), e.moveTo(r, h), e.lineTo(a.x, a.y), e.stroke(), e.fillStyle = "#FFFFFF", e.globalAlpha = 1, e.beginPath(), e.arc(a.x, a.y, 2.2, 0, Math.PI * 2), e.fill();
     }
     e.globalCompositeOperation = "lighter", e.lineWidth = 1.8;
     for (const a of this.activeSparks)
@@ -682,17 +696,17 @@ class J {
     this.mouse = e;
   }
   ignite(e, a, t, r = !1) {
-    const i = r || this.options.followMouse, s = i && this.mouse ? this.mouse.x : e ?? this.options.x, h = i && this.mouse ? this.mouse.y : a ?? this.options.y, l = t ?? this.options.duration;
+    const h = r || this.options.followMouse, s = h && this.mouse ? this.mouse.x : e ?? this.options.x, i = h && this.mouse ? this.mouse.y : a ?? this.options.y, c = t ?? this.options.duration;
     this.instances.push({
       x: s,
-      y: h,
+      y: i,
       radius: this.options.radius * this.options.scale,
       angle: 0,
       angularVelocity: 0.35 * this.options.speed,
-      duration: l,
+      duration: c,
       elapsed: 0,
       sparkColors: this.options.colors,
-      followMouse: i,
+      followMouse: h,
       finished: !1
     }), this.options.sound && this.sound.playChakriWhir();
   }
@@ -700,18 +714,18 @@ class J {
     for (let a = this.instances.length - 1; a >= 0; a--) {
       const t = this.instances[a];
       if (t.elapsed += 20 * e, t.angle += t.angularVelocity * e, t.followMouse && this.mouse && (t.x += (this.mouse.x - t.x) * Math.min(0.4 * e, 1), t.y += (this.mouse.y - t.y) * Math.min(0.4 * e, 1)), t.duration > 0) {
-        const i = t.elapsed / t.duration;
-        if (i >= 1) {
+        const h = t.elapsed / t.duration;
+        if (h >= 1) {
           t.finished = !0, this.instances.splice(a, 1);
           continue;
         }
-        i < 0.2 ? t.angularVelocity = Math.min(0.5, t.angularVelocity + 0.015 * e) : i > 0.7 && (t.angularVelocity = Math.max(0.08, t.angularVelocity * Math.pow(0.985, e)));
+        h < 0.2 ? t.angularVelocity = Math.min(0.5, t.angularVelocity + 0.015 * e) : h > 0.7 && (t.angularVelocity = Math.max(0.08, t.angularVelocity * Math.pow(0.985, e)));
       } else
         t.angularVelocity = 0.42 * this.options.speed;
       const r = Math.floor((8 + Math.random() * 8) * this.options.sparkDensity * e);
-      for (let i = 0; i < r; i++) {
-        const s = Math.PI * 2 * (i % 3) / 3, h = t.angle + s, l = t.x + Math.cos(h) * t.radius, n = t.y + Math.sin(h) * t.radius, c = h + Math.PI / 2, d = (5 + Math.random() * 9) * this.options.scale * (t.angularVelocity / 0.3), f = this.pool.acquire();
-        f.x = l, f.y = n, f.prevX = l, f.prevY = n, f.vx = Math.cos(c) * d + (Math.random() - 0.5) * 2, f.vy = Math.sin(c) * d + (Math.random() - 0.5) * 2, f.drag = 0.93, f.color = t.sparkColors[Math.floor(Math.random() * t.sparkColors.length)], f.size = (1.5 + Math.random() * 2.2) * this.options.scale, f.initialSize = f.size, f.alpha = 1, f.life = 0, f.maxLife = 22 + Math.random() * 28, this.activeSparks.push(f);
+      for (let h = 0; h < r; h++) {
+        const s = Math.PI * 2 * (h % 3) / 3, i = t.angle + s, c = t.x + Math.cos(i) * t.radius, n = t.y + Math.sin(i) * t.radius, l = i + Math.PI / 2, d = (5 + Math.random() * 9) * this.options.scale * (t.angularVelocity / 0.3), f = this.pool.acquire();
+        f.x = c, f.y = n, f.prevX = c, f.prevY = n, f.vx = Math.cos(l) * d + (Math.random() - 0.5) * 2, f.vy = Math.sin(l) * d + (Math.random() - 0.5) * 2, f.drag = 0.93, f.color = t.sparkColors[Math.floor(Math.random() * t.sparkColors.length)], f.size = (1.5 + Math.random() * 2.2) * this.options.scale, f.initialSize = f.size, f.alpha = 1, f.life = 0, f.maxLife = 22 + Math.random() * 28, this.activeSparks.push(f);
       }
     }
     for (let a = this.activeSparks.length - 1; a >= 0; a--) {
@@ -725,8 +739,8 @@ class J {
       const t = e.createRadialGradient(a.x, a.y, 2, a.x, a.y, 45 * this.options.scale);
       t.addColorStop(0, "rgba(255, 200, 50, 0.4)"), t.addColorStop(0.5, "rgba(255, 100, 0, 0.15)"), t.addColorStop(1, "rgba(255, 80, 0, 0)"), e.fillStyle = t, e.beginPath(), e.arc(a.x, a.y, 45 * this.options.scale, 0, Math.PI * 2), e.fill(), e.save(), e.translate(a.x, a.y), e.rotate(a.angle), e.fillStyle = "#D84315", e.beginPath(), e.arc(0, 0, a.radius, 0, Math.PI * 2), e.fill(), e.strokeStyle = "#FFE082", e.lineWidth = 2, e.beginPath();
       for (let r = 0; r < Math.PI * 4; r += 0.2) {
-        const i = a.radius * r / (Math.PI * 4), s = Math.cos(r) * i, h = Math.sin(r) * i;
-        r === 0 ? e.moveTo(s, h) : e.lineTo(s, h);
+        const h = a.radius * r / (Math.PI * 4), s = Math.cos(r) * h, i = Math.sin(r) * h;
+        r === 0 ? e.moveTo(s, i) : e.lineTo(s, i);
       }
       e.stroke(), e.fillStyle = "#FFFFFF", e.beginPath(), e.arc(0, 0, 3 * this.options.scale, 0, Math.PI * 2), e.fill(), e.restore();
     }
@@ -779,13 +793,13 @@ class K {
     };
   }
   ignite(e, a, t, r) {
-    const i = e ?? this.options.x, s = a ?? this.options.y, h = t ?? this.options.height, l = r ?? this.options.duration;
+    const h = e ?? this.options.x, s = a ?? this.options.y, i = t ?? this.options.height, c = r ?? this.options.duration;
     this.instances.push({
-      x: i,
+      x: h,
       y: s,
-      height: h * this.options.scale,
+      height: i * this.options.scale,
       spread: this.options.spread * this.options.scale,
-      duration: l,
+      duration: c,
       elapsed: 0,
       finished: !1
     }), this.options.sound && this.sound.playAnarFountain();
@@ -799,12 +813,12 @@ class K {
         t.finished = !0, this.instances.splice(a, 1);
         continue;
       }
-      let i = 1;
-      r < 0.15 ? i = r / 0.15 : r > 0.75 && (i = Math.max(0.1, (1 - r) / 0.25));
-      const s = t.y - 28 * this.options.scale, h = Math.floor((14 + Math.random() * 16) * i * e);
-      for (let l = 0; l < h; l++) {
-        const n = this.pool.acquire(), c = (10 + Math.random() * 9) * i * this.options.scale * this.options.speed, d = Math.PI / 2 + (Math.random() - 0.5) * 0.5;
-        n.x = t.x + (Math.random() - 0.5) * 8, n.y = s, n.prevX = n.x, n.prevY = n.y, n.vx = Math.cos(d) * c * 0.4 + (Math.random() - 0.5) * 2.5, n.vy = -Math.sin(d) * c, n.drag = 0.988, n.color = this.options.colors[Math.floor(Math.random() * this.options.colors.length)], n.size = (1.5 + Math.random() * 2.2) * this.options.scale, n.initialSize = n.size, n.alpha = 1, n.life = 0, n.maxLife = 45 + Math.random() * 35, this.activeSparks.push(n);
+      let h = 1;
+      r < 0.15 ? h = r / 0.15 : r > 0.75 && (h = Math.max(0.1, (1 - r) / 0.25));
+      const s = t.y - 28 * this.options.scale, i = Math.floor((14 + Math.random() * 16) * h * e);
+      for (let c = 0; c < i; c++) {
+        const n = this.pool.acquire(), l = (10 + Math.random() * 9) * h * this.options.scale * this.options.speed, d = Math.PI / 2 + (Math.random() - 0.5) * 0.5;
+        n.x = t.x + (Math.random() - 0.5) * 8, n.y = s, n.prevX = n.x, n.prevY = n.y, n.vx = Math.cos(d) * l * 0.4 + (Math.random() - 0.5) * 2.5, n.vy = -Math.sin(d) * l, n.drag = 0.988, n.color = this.options.colors[Math.floor(Math.random() * this.options.colors.length)], n.size = (1.5 + Math.random() * 2.2) * this.options.scale, n.initialSize = n.size, n.alpha = 1, n.life = 0, n.maxLife = 45 + Math.random() * 35, this.activeSparks.push(n);
       }
     }
     for (let a = this.activeSparks.length - 1; a >= 0; a--) {
@@ -815,12 +829,12 @@ class K {
   render(e) {
     e.save();
     for (const a of this.instances) {
-      const t = this.options.scale, r = 32 * t, i = 36 * t;
+      const t = this.options.scale, r = 32 * t, h = 36 * t;
       e.save(), e.translate(a.x, a.y);
       const s = e.createLinearGradient(0, -r, 0, 0);
-      s.addColorStop(0, "#E65100"), s.addColorStop(0.5, "#BF360C"), s.addColorStop(1, "#4E342E"), e.fillStyle = s, e.beginPath(), e.moveTo(0, -r), e.lineTo(i / 2, 0), e.lineTo(-i / 2, 0), e.closePath(), e.fill(), e.strokeStyle = "#FFD54F", e.lineWidth = 2 * t, e.beginPath(), e.moveTo(-i * 0.35, -r * 0.35), e.lineTo(i * 0.35, -r * 0.35), e.moveTo(-i * 0.2, -r * 0.65), e.lineTo(i * 0.2, -r * 0.65), e.stroke();
-      const h = e.createRadialGradient(0, -r, 1, 0, -r, 14 * t);
-      h.addColorStop(0, "#FFFFFF"), h.addColorStop(0.4, "#FFE082"), h.addColorStop(1, "rgba(255, 111, 0, 0)"), e.fillStyle = h, e.beginPath(), e.arc(0, -r, 14 * t, 0, Math.PI * 2), e.fill(), e.restore();
+      s.addColorStop(0, "#E65100"), s.addColorStop(0.5, "#BF360C"), s.addColorStop(1, "#4E342E"), e.fillStyle = s, e.beginPath(), e.moveTo(0, -r), e.lineTo(h / 2, 0), e.lineTo(-h / 2, 0), e.closePath(), e.fill(), e.strokeStyle = "#FFD54F", e.lineWidth = 2 * t, e.beginPath(), e.moveTo(-h * 0.35, -r * 0.35), e.lineTo(h * 0.35, -r * 0.35), e.moveTo(-h * 0.2, -r * 0.65), e.lineTo(h * 0.2, -r * 0.65), e.stroke();
+      const i = e.createRadialGradient(0, -r, 1, 0, -r, 14 * t);
+      i.addColorStop(0, "#FFFFFF"), i.addColorStop(0.4, "#FFE082"), i.addColorStop(1, "rgba(255, 111, 0, 0)"), e.fillStyle = i, e.beginPath(), e.arc(0, -r, 14 * t, 0, Math.PI * 2), e.fill(), e.restore();
     }
     e.globalCompositeOperation = "lighter", e.lineCap = "round";
     for (const a of this.activeSparks)
@@ -896,10 +910,10 @@ class $ {
         continue;
       }
       r.followMouse && this.mouse && (r.x += (this.mouse.x - r.x) * Math.min(0.35 * e, 1), r.y += (this.mouse.y - r.y) * Math.min(0.35 * e, 1));
-      const i = r.x, s = r.y, h = Math.floor((5 + Math.random() * 6) * this.options.scale * e);
-      for (let l = 0; l < h; l++) {
-        const n = this.pool.acquire(), c = Math.random() * Math.PI * 2, d = (2 + Math.random() * 6.5) * this.options.scale * this.options.speed;
-        n.x = i + (Math.random() - 0.5) * 4, n.y = s + (Math.random() - 0.5) * 4, n.prevX = i, n.prevY = s, n.vx = Math.cos(c) * d, n.vy = Math.sin(c) * d, n.drag = 0.93, n.color = this.options.colors[Math.floor(Math.random() * this.options.colors.length)], n.size = (1.2 + Math.random() * 2) * this.options.scale, n.initialSize = n.size, n.alpha = 1, n.life = 0, n.maxLife = 18 + Math.random() * 20, n.customData = {
+      const h = r.x, s = r.y, i = Math.floor((5 + Math.random() * 6) * this.options.scale * e);
+      for (let c = 0; c < i; c++) {
+        const n = this.pool.acquire(), l = Math.random() * Math.PI * 2, d = (2 + Math.random() * 6.5) * this.options.scale * this.options.speed;
+        n.x = h + (Math.random() - 0.5) * 4, n.y = s + (Math.random() - 0.5) * 4, n.prevX = h, n.prevY = s, n.vx = Math.cos(l) * d, n.vy = Math.sin(l) * d, n.drag = 0.93, n.color = this.options.colors[Math.floor(Math.random() * this.options.colors.length)], n.size = (1.2 + Math.random() * 2) * this.options.scale, n.initialSize = n.size, n.alpha = 1, n.life = 0, n.maxLife = 18 + Math.random() * 20, n.customData = {
           branch: Math.random() > 0.7
         }, this.activeSparks.push(n);
       }
@@ -909,9 +923,9 @@ class $ {
       const r = this.activeSparks[t];
       if (r.prevX = r.x, r.prevY = r.y, r.vx *= Math.pow(r.drag, e), r.vy = r.vy * Math.pow(r.drag, e) + 0.12 * e, r.x += r.vx * this.options.speed * e, r.y += r.vy * this.options.speed * e, r.life += e, r.alpha = Math.max(0, 1 - r.life / r.maxLife), (a = r.customData) != null && a.branch && r.life === Math.floor(r.maxLife * 0.5)) {
         r.customData.branch = !1;
-        for (let i = 0; i < 2; i++) {
-          const s = this.pool.acquire(), h = Math.random() * Math.PI * 2;
-          s.x = r.x, s.y = r.y, s.prevX = r.x, s.prevY = r.y, s.vx = Math.cos(h) * 3, s.vy = Math.sin(h) * 3, s.drag = 0.9, s.color = "#FFF9C4", s.size = 1.2 * this.options.scale, s.initialSize = s.size, s.alpha = 1, s.life = 0, s.maxLife = 10, this.activeSparks.push(s);
+        for (let h = 0; h < 2; h++) {
+          const s = this.pool.acquire(), i = Math.random() * Math.PI * 2;
+          s.x = r.x, s.y = r.y, s.prevX = r.x, s.prevY = r.y, s.vx = Math.cos(i) * 3, s.vy = Math.sin(i) * 3, s.drag = 0.9, s.color = "#FFF9C4", s.size = 1.2 * this.options.scale, s.initialSize = s.size, s.alpha = 1, s.life = 0, s.maxLife = 10, this.activeSparks.push(s);
         }
       }
       (r.life >= r.maxLife || r.alpha <= 0.01) && (this.pool.release(r), this.activeSparks.splice(t, 1));
@@ -920,12 +934,12 @@ class $ {
   render(e) {
     e.save();
     for (const a of this.wands) {
-      const t = this.options.wireLength * this.options.scale, r = a.x - Math.cos(a.angle) * t, i = a.y - Math.sin(a.angle) * t;
-      e.strokeStyle = "#90A4AE", e.lineWidth = 2 * this.options.scale, e.beginPath(), e.moveTo(a.x, a.y), e.lineTo(r, i), e.stroke();
-      const s = a.x - Math.cos(a.angle) * (t * 0.05), h = a.y - Math.sin(a.angle) * (t * 0.05), l = a.x - Math.cos(a.angle) * (t * 0.65), n = a.y - Math.sin(a.angle) * (t * 0.65);
-      e.strokeStyle = "#455A64", e.lineWidth = 4 * this.options.scale, e.beginPath(), e.moveTo(s, h), e.lineTo(l, n), e.stroke();
-      const c = e.createRadialGradient(a.x, a.y, 1, a.x, a.y, 18 * this.options.scale);
-      c.addColorStop(0, "#FFFFFF"), c.addColorStop(0.3, "#FFE082"), c.addColorStop(0.7, "#FF6F00"), c.addColorStop(1, "rgba(255, 111, 0, 0)"), e.fillStyle = c, e.beginPath(), e.arc(a.x, a.y, 18 * this.options.scale, 0, Math.PI * 2), e.fill();
+      const t = this.options.wireLength * this.options.scale, r = a.x - Math.cos(a.angle) * t, h = a.y - Math.sin(a.angle) * t;
+      e.strokeStyle = "#90A4AE", e.lineWidth = 2 * this.options.scale, e.beginPath(), e.moveTo(a.x, a.y), e.lineTo(r, h), e.stroke();
+      const s = a.x - Math.cos(a.angle) * (t * 0.05), i = a.y - Math.sin(a.angle) * (t * 0.05), c = a.x - Math.cos(a.angle) * (t * 0.65), n = a.y - Math.sin(a.angle) * (t * 0.65);
+      e.strokeStyle = "#455A64", e.lineWidth = 4 * this.options.scale, e.beginPath(), e.moveTo(s, i), e.lineTo(c, n), e.stroke();
+      const l = e.createRadialGradient(a.x, a.y, 1, a.x, a.y, 18 * this.options.scale);
+      l.addColorStop(0, "#FFFFFF"), l.addColorStop(0.3, "#FFE082"), l.addColorStop(0.7, "#FF6F00"), l.addColorStop(1, "rgba(255, 111, 0, 0)"), e.fillStyle = l, e.beginPath(), e.arc(a.x, a.y, 18 * this.options.scale, 0, Math.PI * 2), e.fill();
     }
     e.globalCompositeOperation = "lighter", e.lineCap = "round";
     for (const a of this.activeSparks)
@@ -970,20 +984,20 @@ class ee {
   preRenderSprites() {
     if (typeof document > "u") return;
     this.spriteCanvases = [];
-    const e = 60, a = 80, t = 35, r = e + t * 2, i = a + t * 2, s = r / 2, h = i / 2;
-    for (let l = 0; l < x.length; l++) {
-      const n = x[l], c = document.createElement("canvas");
-      c.width = r, c.height = i;
-      const d = c.getContext("2d");
+    const e = 60, a = 80, t = 35, r = e + t * 2, h = a + t * 2, s = r / 2, i = h / 2;
+    for (let c = 0; c < x.length; c++) {
+      const n = x[c], l = document.createElement("canvas");
+      l.width = r, l.height = h;
+      const d = l.getContext("2d");
       if (!d) continue;
-      const f = d.createRadialGradient(s, h, 4, s, h, 45);
-      f.addColorStop(0, "rgba(255, 180, 50, 0.45)"), f.addColorStop(0.5, "rgba(255, 100, 20, 0.16)"), f.addColorStop(1, "rgba(255, 80, 0, 0)"), d.fillStyle = f, d.beginPath(), d.arc(s, h, 45, 0, Math.PI * 2), d.fill();
-      const u = d.createLinearGradient(s - e / 2, h - a / 2, s + e / 2, h + a / 2);
+      const f = d.createRadialGradient(s, i, 4, s, i, 45);
+      f.addColorStop(0, "rgba(255, 180, 50, 0.45)"), f.addColorStop(0.5, "rgba(255, 100, 20, 0.16)"), f.addColorStop(1, "rgba(255, 80, 0, 0)"), d.fillStyle = f, d.beginPath(), d.arc(s, i, 45, 0, Math.PI * 2), d.fill();
+      const u = d.createLinearGradient(s - e / 2, i - a / 2, s + e / 2, i + a / 2);
       u.addColorStop(0, "#FFF176"), u.addColorStop(0.4, n.body), u.addColorStop(1, n.dark), d.fillStyle = u;
       const m = e * 0.2;
-      d.beginPath(), d.roundRect(s - e / 2, h - a / 2, e, a, [m, m, m * 0.4, m * 0.4]), d.fill(), d.strokeStyle = "#5D4037", d.lineWidth = 2, d.strokeRect(s - e * 0.4, h + a / 2 - 3, e * 0.8, 4);
-      const g = d.createRadialGradient(s, h + a * 0.22, 0, s, h + a * 0.22, e * 0.35);
-      g.addColorStop(0, "#FFFFFF"), g.addColorStop(0.4, "#FFE082"), g.addColorStop(1, "rgba(255, 160, 0, 0)"), d.fillStyle = g, d.beginPath(), d.arc(s, h + a * 0.22, e * 0.35, 0, Math.PI * 2), d.fill(), this.spriteCanvases.push(c);
+      d.beginPath(), d.roundRect(s - e / 2, i - a / 2, e, a, [m, m, m * 0.4, m * 0.4]), d.fill(), d.strokeStyle = "#5D4037", d.lineWidth = 2, d.strokeRect(s - e * 0.4, i + a / 2 - 3, e * 0.8, 4);
+      const g = d.createRadialGradient(s, i + a * 0.22, 0, s, i + a * 0.22, e * 0.35);
+      g.addColorStop(0, "#FFFFFF"), g.addColorStop(0.4, "#FFE082"), g.addColorStop(1, "rgba(255, 160, 0, 0)"), d.fillStyle = g, d.beginPath(), d.arc(s, i + a * 0.22, e * 0.35, 0, Math.PI * 2), d.fill(), this.spriteCanvases.push(l);
     }
   }
   init(e, a) {
@@ -992,36 +1006,46 @@ class ee {
       this.lanterns.push(this.createLantern(e, a, !0));
   }
   createLantern(e, a, t = !1) {
-    const r = 0.45 + Math.random() * 0.55, i = this.options.size * this.options.scale * r, s = i * 1.35, h = Math.floor(Math.random() * x.length), l = Math.random() * e, n = this.options.position === "sky" ? a * 0.55 : a, c = t ? Math.random() * n : a + s + Math.random() * 80;
+    const r = 0.45 + Math.random() * 0.55, h = this.options.size * this.options.scale * r, s = h * 1.35, i = Math.floor(Math.random() * x.length), c = Math.random() * e, n = this.options.position === "sky" ? a * 0.55 : a, l = t ? Math.random() * n : a + s + Math.random() * 80;
     return {
-      x: l,
-      y: c,
-      baseX: l,
-      width: i,
+      x: c,
+      y: l,
+      baseX: c,
+      width: h,
       height: s,
       vy: (-0.35 - Math.random() * 0.45) * this.options.speed * r,
       swayPhase: Math.random() * Math.PI * 2,
       swaySpeed: (0.012 + Math.random() * 0.014) * this.options.speed,
       swayAmplitude: (14 + Math.random() * 20) * this.options.sway * r,
-      paletteIndex: h,
-      depth: r
+      paletteIndex: i,
+      depth: r,
+      currentAlpha: 1,
+      targetAlpha: 1
     };
   }
-  update(e, a, t = 1) {
-    for (let r = 0; r < this.lanterns.length; r++) {
-      const i = this.lanterns[r];
-      i.swayPhase += i.swaySpeed * t, i.x = i.baseX + Math.sin(i.swayPhase) * i.swayAmplitude, i.y += i.vy * t, i.y < -i.height * 2 && (this.options.continuous ? this.lanterns[r] = this.createLantern(e, a, !1) : (this.lanterns.splice(r, 1), r--));
+  update(e, a, t = -999, r = -999, h = 1) {
+    for (let s = 0; s < this.lanterns.length; s++) {
+      const i = this.lanterns[s];
+      i.swayPhase += i.swaySpeed * h, i.x = i.baseX + Math.sin(i.swayPhase) * i.swayAmplitude, i.y += i.vy * h;
+      const c = Math.hypot(t - i.x, r - i.y), n = 90 * i.depth;
+      if (c < n) {
+        const l = Math.max(0, c / n);
+        i.targetAlpha = 0.08 + l * 0.92;
+      } else
+        i.targetAlpha = 1;
+      i.currentAlpha += (i.targetAlpha - i.currentAlpha) * Math.min(0.25 * h, 1), i.y < -i.height * 2 && (this.options.continuous ? this.lanterns[s] = this.createLantern(e, a, !1) : (this.lanterns.splice(s, 1), s--));
     }
   }
   render(e) {
     if (this.spriteCanvases.length !== 0) {
       e.save();
       for (const a of this.lanterns) {
+        if (a.currentAlpha <= 0.02) continue;
         const t = this.spriteCanvases[a.paletteIndex];
         if (!t) continue;
-        e.save(), e.globalAlpha = 0.88 * a.depth;
-        const r = a.width * 2.1, i = a.height * 1.85;
-        e.drawImage(t, a.x - r / 2, a.y - i / 2, r, i), e.restore();
+        e.save(), e.globalAlpha = 0.88 * a.depth * a.currentAlpha;
+        const r = a.width * 2.1, h = a.height * 1.85;
+        e.drawImage(t, a.x - r / 2, a.y - h / 2, r, h), e.restore();
       }
       e.restore();
     }
@@ -1063,7 +1087,7 @@ class se {
   createPetal(e, a, t = !1) {
     let r = "marigold";
     this.options.petalType === "rose" ? r = "rose" : this.options.petalType === "mix" && (r = Math.random() > 0.4 ? "marigold" : "rose");
-    const i = r === "marigold" ? te : ae, s = i[Math.floor(Math.random() * i.length)];
+    const h = r === "marigold" ? te : ae, s = h[Math.floor(Math.random() * h.length)];
     return {
       x: Math.random() * (e + 100) - 50,
       y: t ? Math.random() * a - a * 0.3 : -20 - Math.random() * 50,
@@ -1083,8 +1107,8 @@ class se {
   }
   update(e, a, t = 1) {
     for (let r = this.petals.length - 1; r >= 0; r--) {
-      const i = this.petals[r];
-      i.swayPhase += i.swaySpeed * t, i.rotation += i.rotationSpeed * t, i.rollAngle += i.rollSpeed * t, i.x += (i.vx + Math.sin(i.swayPhase) * 1.2) * t, i.y += i.vy * t, i.y > a + 30 && (this.isRunning ? this.petals[r] = this.createPetal(e, a, !1) : this.petals.splice(r, 1));
+      const h = this.petals[r];
+      h.swayPhase += h.swaySpeed * t, h.rotation += h.rotationSpeed * t, h.rollAngle += h.rollSpeed * t, h.x += (h.vx + Math.sin(h.swayPhase) * 1.2) * t, h.y += h.vy * t, h.y > a + 30 && (this.isRunning ? this.petals[r] = this.createPetal(e, a, !1) : this.petals.splice(r, 1));
     }
   }
   render(e) {
@@ -1129,14 +1153,14 @@ class re {
     };
   }
   ignite(e, a, t) {
-    const r = e ?? this.options.x, i = a ?? this.options.y, s = t ?? this.options.crackerCount, h = this.options.length * this.options.scale;
+    const r = e ?? this.options.x, h = a ?? this.options.y, s = t ?? this.options.crackerCount, i = this.options.length * this.options.scale;
     this.crackers = [];
-    const l = h / s;
+    const c = i / s;
     for (let n = 0; n < s; n++) {
-      const c = i + n * l, d = n % 2 === 0 ? 1 : -1;
+      const l = h + n * c, d = n % 2 === 0 ? 1 : -1;
       this.crackers.push({
         x: r + d * (8 * this.options.scale),
-        y: c,
+        y: l,
         exploded: !1,
         angle: d * 0.3
       });
@@ -1152,8 +1176,8 @@ class re {
     e.exploded = !0, this.options.sound && this.sound.playLadiPop();
     const a = Math.floor(10 * this.options.scale);
     for (let r = 0; r < a; r++) {
-      const i = this.pool.acquire(), s = Math.random() * Math.PI * 2, h = 2 + Math.random() * 5;
-      i.x = e.x, i.y = e.y, i.prevX = e.x, i.prevY = e.y, i.vx = Math.cos(s) * h, i.vy = Math.sin(s) * h, i.drag = 0.92, i.color = Math.random() > 0.4 ? "#FFFFFF" : "#FFD54F", i.size = 2 * this.options.scale, i.initialSize = i.size, i.alpha = 1, i.life = 0, i.maxLife = 12 + Math.random() * 12, this.activeSparks.push(i);
+      const h = this.pool.acquire(), s = Math.random() * Math.PI * 2, i = 2 + Math.random() * 5;
+      h.x = e.x, h.y = e.y, h.prevX = e.x, h.prevY = e.y, h.vx = Math.cos(s) * i, h.vy = Math.sin(s) * i, h.drag = 0.92, h.color = Math.random() > 0.4 ? "#FFFFFF" : "#FFD54F", h.size = 2 * this.options.scale, h.initialSize = h.size, h.alpha = 1, h.life = 0, h.maxLife = 12 + Math.random() * 12, this.activeSparks.push(h);
     }
     for (let r = 0; r < 3; r++)
       this.smokeClouds.push({
@@ -1201,8 +1225,8 @@ class re {
     if (e.save(), this.crackers.length > 0) {
       const a = this.crackers[0].y - 20, t = this.crackers[this.crackers.length - 1].y, r = this.options.x;
       e.strokeStyle = "#D7CCC8", e.lineWidth = 2 * this.options.scale, e.beginPath(), e.moveTo(r, a), e.lineTo(r, t), e.stroke();
-      for (const i of this.crackers)
-        i.exploded || (e.save(), e.translate(i.x, i.y), e.rotate(i.angle), e.fillStyle = "#D32F2F", e.fillRect(-6 * this.options.scale, -3 * this.options.scale, 12 * this.options.scale, 6 * this.options.scale), e.fillStyle = "#FFD54F", e.fillRect(-2 * this.options.scale, -3 * this.options.scale, 4 * this.options.scale, 6 * this.options.scale), e.restore());
+      for (const h of this.crackers)
+        h.exploded || (e.save(), e.translate(h.x, h.y), e.rotate(h.angle), e.fillStyle = "#D32F2F", e.fillRect(-6 * this.options.scale, -3 * this.options.scale, 12 * this.options.scale, 6 * this.options.scale), e.fillStyle = "#FFD54F", e.fillRect(-2 * this.options.scale, -3 * this.options.scale, 4 * this.options.scale, 6 * this.options.scale), e.restore());
     }
     for (const a of this.paperDebris)
       e.save(), e.translate(a.x, a.y), e.rotate(a.rotation), e.fillStyle = `rgba(211, 47, 47, ${a.alpha})`, e.fillRect(-a.size / 2, -a.size / 2, a.size, a.size * 0.7), e.restore();
@@ -1220,7 +1244,7 @@ class re {
     this.activeSparks = [];
   }
 }
-const p = [
+const S = [
   { primary: "#FF5722", accent: "#FFD700" },
   // Saffron Red & Gold
   { primary: "#FF9800", accent: "#FFF59D" },
@@ -1243,37 +1267,37 @@ class ie {
   preRenderSprites() {
     if (typeof document > "u") return;
     this.spriteCanvases = [];
-    const e = 44, a = e * 1.35, t = e + 24, r = a + 24, i = e * 0.5, s = t / 2, h = 12;
-    for (let l = 0; l < p.length; l++) {
-      const n = p[l], c = document.createElement("canvas");
-      c.width = t, c.height = r;
-      const d = c.getContext("2d");
+    const e = 44, a = e * 1.35, t = e + 24, r = a + 24, h = e * 0.5, s = t / 2, i = 12;
+    for (let c = 0; c < S.length; c++) {
+      const n = S[c], l = document.createElement("canvas");
+      l.width = t, l.height = r;
+      const d = l.getContext("2d");
       if (!d) continue;
-      d.fillStyle = "rgba(255, 150, 0, 0.25)", d.beginPath(), d.arc(s, h + a * 0.45, i * 1.3, 0, Math.PI * 2), d.fill();
-      const f = d.createLinearGradient(s - i, h, s + i, h + a);
-      f.addColorStop(0, n.primary), f.addColorStop(0.5, n.accent), f.addColorStop(1, n.primary), d.fillStyle = f, d.beginPath(), d.moveTo(s, h), d.lineTo(s + i, h + a * 0.45), d.lineTo(s + i * 0.5, h + a), d.lineTo(s - i * 0.5, h + a), d.lineTo(s - i, h + a * 0.45), d.closePath(), d.fill(), d.fillStyle = "#FFA000", d.fillRect(s - i * 0.35, h - 5, i * 0.7, 5), d.fillStyle = "#FFD700", d.beginPath(), d.arc(s, h - 6, 3.5, 0, Math.PI * 2), d.fill();
-      const u = d.createRadialGradient(s, h + a * 0.45, 2, s, h + a * 0.45, i * 0.7);
-      u.addColorStop(0, "rgba(255, 255, 255, 0.95)"), u.addColorStop(0.4, "rgba(255, 235, 59, 0.75)"), u.addColorStop(1, "rgba(255, 152, 0, 0)"), d.fillStyle = u, d.beginPath(), d.arc(s, h + a * 0.45, i * 0.7, 0, Math.PI * 2), d.fill(), this.spriteCanvases.push(c);
+      d.fillStyle = "rgba(255, 150, 0, 0.25)", d.beginPath(), d.arc(s, i + a * 0.45, h * 1.3, 0, Math.PI * 2), d.fill();
+      const f = d.createLinearGradient(s - h, i, s + h, i + a);
+      f.addColorStop(0, n.primary), f.addColorStop(0.5, n.accent), f.addColorStop(1, n.primary), d.fillStyle = f, d.beginPath(), d.moveTo(s, i), d.lineTo(s + h, i + a * 0.45), d.lineTo(s + h * 0.5, i + a), d.lineTo(s - h * 0.5, i + a), d.lineTo(s - h, i + a * 0.45), d.closePath(), d.fill(), d.fillStyle = "#FFA000", d.fillRect(s - h * 0.35, i - 5, h * 0.7, 5), d.fillStyle = "#FFD700", d.beginPath(), d.arc(s, i - 6, 3.5, 0, Math.PI * 2), d.fill();
+      const u = d.createRadialGradient(s, i + a * 0.45, 2, s, i + a * 0.45, h * 0.7);
+      u.addColorStop(0, "rgba(255, 255, 255, 0.95)"), u.addColorStop(0.4, "rgba(255, 235, 59, 0.75)"), u.addColorStop(1, "rgba(255, 152, 0, 0)"), d.fillStyle = u, d.beginPath(), d.arc(s, i + a * 0.45, h * 0.7, 0, Math.PI * 2), d.fill(), this.spriteCanvases.push(l);
     }
   }
   init(e) {
     this.lanterns = [];
     const a = e / (this.count + 1);
     for (let t = 0; t < this.count; t++) {
-      const r = a * (t + 1), i = t % p.length, s = p[i], h = 35 + t % 3 * 16 + Math.random() * 8, l = 40, n = l * 1.35;
+      const r = a * (t + 1), h = t % S.length, s = S[h], i = 35 + t % 3 * 16 + Math.random() * 8, c = 40, n = c * 1.35;
       this.lanterns.push({
         baseX: r,
         x: r,
-        y: h,
-        stringLength: h,
-        width: l,
+        y: i,
+        stringLength: i,
+        width: c,
         height: n,
         swayPhase: t / this.count * Math.PI * 2 + Math.random(),
         swaySpeed: 0.016 + Math.random() * 0.01,
         swayMaxAngle: 0.07 + Math.random() * 0.05,
         swayAngle: 0,
         glowPhase: Math.random() * Math.PI * 2,
-        paletteIndex: i,
+        paletteIndex: h,
         primaryColor: s.primary,
         accentColor: s.accent,
         currentAlpha: 1,
@@ -1284,12 +1308,12 @@ class ie {
   update(e, a, t = 1) {
     for (const r of this.lanterns) {
       r.swayPhase += r.swaySpeed * t, r.swayAngle = Math.sin(r.swayPhase) * r.swayMaxAngle, r.glowPhase += 0.05 * t, r.x = r.baseX + Math.sin(r.swayAngle) * r.stringLength, r.y = Math.cos(r.swayAngle) * r.stringLength;
-      const i = Math.hypot(e - r.x, a - (r.y + r.height * 0.5));
-      if (i < this.fadeRadius) {
-        const s = Math.max(0.06, i / this.fadeRadius);
+      const h = Math.hypot(e - r.x, a - (r.y + r.height * 0.5));
+      if (h < this.fadeRadius) {
+        const s = Math.max(0.06, h / this.fadeRadius);
         r.targetAlpha = s * s;
-        const h = (r.x - e) / (this.fadeRadius || 1);
-        r.swayAngle += h * 5e-3 * t;
+        const i = (r.x - e) / (this.fadeRadius || 1);
+        r.swayAngle += i * 5e-3 * t;
       } else
         r.targetAlpha = 1;
       r.currentAlpha += (r.targetAlpha - r.currentAlpha) * Math.min(0.2 * t, 1);
@@ -1303,12 +1327,12 @@ class ie {
         e.save(), e.globalAlpha = a.currentAlpha, e.strokeStyle = "rgba(255, 215, 0, 0.45)", e.lineWidth = 1.2, e.beginPath(), e.moveTo(a.baseX, 0), e.lineTo(a.x, a.y), e.stroke(), e.translate(a.x, a.y), e.rotate(a.swayAngle);
         const t = this.spriteCanvases[a.paletteIndex];
         if (t) {
-          const h = a.width + 24, l = a.height + 24;
-          e.drawImage(t, -h / 2, -6, h, l);
+          const i = a.width + 24, c = a.height + 24;
+          e.drawImage(t, -i / 2, -6, i, c);
         }
         e.strokeStyle = a.accentColor, e.lineWidth = 1.4;
-        const r = a.width * 0.5, i = a.height, s = Math.sin(a.swayPhase * 1.3) * 5;
-        e.beginPath(), e.moveTo(-r * 0.3, i), e.quadraticCurveTo(-r * 0.15, i + 10, -r * 0.3 + s, i + 20), e.moveTo(0, i), e.quadraticCurveTo(s * 0.5, i + 11, s, i + 22), e.moveTo(r * 0.3, i), e.quadraticCurveTo(r * 0.15, i + 10, r * 0.3 + s, i + 20), e.stroke(), e.restore();
+        const r = a.width * 0.5, h = a.height, s = Math.sin(a.swayPhase * 1.3) * 5;
+        e.beginPath(), e.moveTo(-r * 0.3, h), e.quadraticCurveTo(-r * 0.15, h + 10, -r * 0.3 + s, h + 20), e.moveTo(0, h), e.quadraticCurveTo(s * 0.5, h + 11, s, h + 22), e.moveTo(r * 0.3, h), e.quadraticCurveTo(r * 0.15, h + 10, r * 0.3 + s, h + 20), e.stroke(), e.restore();
       }
       e.restore();
     }
@@ -1333,17 +1357,17 @@ class he {
   }
   init(e, a) {
     this.width = e, this.nodes = [], this.fairyLights = [], this.isCached = !1;
-    const t = this.scale, r = 240 * t, i = Math.max(4, Math.round(e / r)), s = e / i, h = 38 * t;
-    for (let l = 0; l < i; l++) {
-      const n = l * s;
+    const t = this.scale, r = 240 * t, h = Math.max(4, Math.round(e / r)), s = e / h, i = 38 * t;
+    for (let c = 0; c < h; c++) {
+      const n = c * s;
       this.nodes.push({
         apexX: n,
-        lampChainLen: (26 + l % 2 * 8) * t,
+        lampChainLen: (26 + c % 2 * 8) * t,
         flamePhase: Math.random() * Math.PI * 2
       });
-      const c = Math.round(s / (14 * t));
-      for (let d = 0; d <= c; d++) {
-        const f = d / c, u = n + f * s, m = 4 * f * (1 - f) * h;
+      const l = Math.round(s / (14 * t));
+      for (let d = 0; d <= l; d++) {
+        const f = d / l, u = n + f * s, m = 4 * f * (1 - f) * i;
         d % 2 === 0 && this.fairyLights.push({
           x: u,
           y: m - 2 * t,
@@ -1356,25 +1380,25 @@ class he {
       apexX: e,
       lampChainLen: 28 * t,
       flamePhase: Math.random() * Math.PI * 2
-    }), this.preRenderStaticToran(i, s, h);
+    }), this.preRenderStaticToran(h, s, i);
   }
   preRenderStaticToran(e, a, t) {
     if (typeof document > "u") return;
-    const r = this.scale, i = Math.ceil(t + 45 * r);
-    this.offscreenCanvas = document.createElement("canvas"), this.offscreenCanvas.width = this.width, this.offscreenCanvas.height = i;
+    const r = this.scale, h = Math.ceil(t + 45 * r);
+    this.offscreenCanvas = document.createElement("canvas"), this.offscreenCanvas.width = this.width, this.offscreenCanvas.height = h;
     const s = this.offscreenCanvas.getContext("2d");
     if (!s) return;
-    const h = "#FF6F00", l = "#FFA000", n = "#FFD600", c = "#FFF176", d = "#1B5E20", f = "#2E7D32";
+    const i = "#FF6F00", c = "#FFA000", n = "#FFD600", l = "#FFF176", d = "#1B5E20", f = "#2E7D32";
     s.strokeStyle = "#D84315", s.lineWidth = 2.5 * r, s.beginPath(), s.moveTo(0, 0), s.lineTo(this.width, 0), s.stroke();
     for (let u = 0; u < e; u++) {
       const m = u * a, g = Math.round(a / (14 * r));
       for (let v = 1; v < g; v += 2) {
-        const M = v / g, F = m + M * a, A = 4 * M * (1 - M) * t + 8 * r, w = 8 * r, C = (M - 0.5) * 0.4;
-        s.save(), s.translate(F, A), s.rotate(C), s.fillStyle = v % 4 === 1 ? d : f, s.beginPath(), s.moveTo(0, -w), s.quadraticCurveTo(w * 0.7, 0, 0, w * 1.6), s.quadraticCurveTo(-w * 0.7, 0, 0, -w), s.fill(), s.strokeStyle = "#1B5E20", s.lineWidth = 1 * r, s.beginPath(), s.moveTo(0, -w), s.lineTo(0, w * 1.4), s.stroke(), s.restore();
+        const M = v / g, F = m + M * a, w = 4 * M * (1 - M) * t + 8 * r, A = 8 * r, b = (M - 0.5) * 0.4;
+        s.save(), s.translate(F, w), s.rotate(b), s.fillStyle = v % 4 === 1 ? d : f, s.beginPath(), s.moveTo(0, -A), s.quadraticCurveTo(A * 0.7, 0, 0, A * 1.6), s.quadraticCurveTo(-A * 0.7, 0, 0, -A), s.fill(), s.strokeStyle = "#1B5E20", s.lineWidth = 1 * r, s.beginPath(), s.moveTo(0, -A), s.lineTo(0, A * 1.4), s.stroke(), s.restore();
       }
       for (let v = 0; v <= g; v++) {
-        const M = v / g, F = m + M * a, A = 4 * M * (1 - M) * t, w = (u * g + v) % 2 === 0;
-        s.fillStyle = w ? c : l, s.beginPath(), s.arc(F, A, (7 + v % 2 * 1.5) * r, 0, Math.PI * 2), s.fill(), s.fillStyle = w ? n : h, s.beginPath(), s.arc(F, A, (5 + v % 2) * r, 0, Math.PI * 2), s.fill();
+        const M = v / g, F = m + M * a, w = 4 * M * (1 - M) * t, A = (u * g + v) % 2 === 0;
+        s.fillStyle = A ? l : c, s.beginPath(), s.arc(F, w, (7 + v % 2 * 1.5) * r, 0, Math.PI * 2), s.fill(), s.fillStyle = A ? n : i, s.beginPath(), s.arc(F, w, (5 + v % 2) * r, 0, Math.PI * 2), s.fill();
       }
     }
     for (const u of this.nodes) {
@@ -1398,8 +1422,8 @@ class he {
     e.save(), e.globalAlpha = this.currentAlpha, this.isCached && this.offscreenCanvas && e.drawImage(this.offscreenCanvas, 0, 0);
     const a = this.scale;
     for (const t of this.nodes) {
-      const r = t.apexX, i = t.lampChainLen, s = Math.sin(this.time * 3 + t.flamePhase) * 1.5 * a;
-      e.fillStyle = "#FFF9C4", e.beginPath(), e.moveTo(r - 2.5 * a, i + 3 * a), e.quadraticCurveTo(r - 3.5 * a, i, r, i - 7 * a + s), e.quadraticCurveTo(r + 3.5 * a, i, r + 2.5 * a, i + 3 * a), e.closePath(), e.fill(), e.fillStyle = "#FFFFFF", e.beginPath(), e.ellipse(r, i + 1 * a, 1.2 * a, 2.5 * a, 0, 0, Math.PI * 2), e.fill();
+      const r = t.apexX, h = t.lampChainLen, s = Math.sin(this.time * 3 + t.flamePhase) * 1.5 * a;
+      e.fillStyle = "#FFF9C4", e.beginPath(), e.moveTo(r - 2.5 * a, h + 3 * a), e.quadraticCurveTo(r - 3.5 * a, h, r, h - 7 * a + s), e.quadraticCurveTo(r + 3.5 * a, h, r + 2.5 * a, h + 3 * a), e.closePath(), e.fill(), e.fillStyle = "#FFFFFF", e.beginPath(), e.ellipse(r, h + 1 * a, 1.2 * a, 2.5 * a, 0, 0, Math.PI * 2), e.fill();
     }
     for (const t of this.fairyLights) {
       const r = (Math.sin(this.time * 4 + t.phase) + 1) * 0.5;
@@ -1423,6 +1447,8 @@ class le {
     o(this, "chewPhase", 0);
     o(this, "breathPhase", 0);
     o(this, "sparkleTimer", 0);
+    o(this, "currentAlpha", 1);
+    o(this, "targetAlpha", 1);
     // Offscreen pre-rendered sweets bowl & laddoos
     o(this, "bowlCanvas", null);
     o(this, "bowlOffsetX", 0);
@@ -1444,30 +1470,30 @@ class le {
   }
   preRenderSweetsBowl() {
     if (typeof document > "u") return;
-    const e = this.scale, a = 32 * e, t = 23 * e, r = Math.ceil(a * 2 + 50 * e), i = Math.ceil(t + 60 * e);
-    this.bowlCanvas = document.createElement("canvas"), this.bowlCanvas.width = r, this.bowlCanvas.height = i;
+    const e = this.scale, a = 32 * e, t = 23 * e, r = Math.ceil(a * 2 + 50 * e), h = Math.ceil(t + 60 * e);
+    this.bowlCanvas = document.createElement("canvas"), this.bowlCanvas.width = r, this.bowlCanvas.height = h;
     const s = this.bowlCanvas.getContext("2d");
     if (!s) return;
-    const h = r / 2, l = i - 12 * e;
-    this.bowlOffsetX = h, this.bowlOffsetY = l;
-    const n = s.createRadialGradient(h, l - 14 * e, 4 * e, h, l - 14 * e, 48 * e);
-    n.addColorStop(0, "rgba(255, 179, 0, 0.35)"), n.addColorStop(0.6, "rgba(255, 143, 0, 0.12)"), n.addColorStop(1, "rgba(255, 143, 0, 0)"), s.fillStyle = n, s.beginPath(), s.arc(h, l - 14 * e, 48 * e, 0, Math.PI * 2), s.fill(), s.fillStyle = "rgba(0, 0, 0, 0.40)", s.beginPath(), s.ellipse(h, l + 4 * e, a, 7 * e, 0, 0, Math.PI * 2), s.fill();
-    const c = s.createLinearGradient(h - a, 0, h + a, -t);
-    c.addColorStop(0, "#E65100"), c.addColorStop(0.25, "#FFB300"), c.addColorStop(0.55, "#FFF176"), c.addColorStop(0.8, "#FFA000"), c.addColorStop(1, "#BF360C"), s.fillStyle = c, s.beginPath(), s.moveTo(h - a, l), s.bezierCurveTo(
-      h - a * 0.9,
-      l - t,
-      h + a * 0.9,
-      l - t,
-      h + a,
-      l
+    const i = r / 2, c = h - 12 * e;
+    this.bowlOffsetX = i, this.bowlOffsetY = c;
+    const n = s.createRadialGradient(i, c - 14 * e, 4 * e, i, c - 14 * e, 48 * e);
+    n.addColorStop(0, "rgba(255, 179, 0, 0.35)"), n.addColorStop(0.6, "rgba(255, 143, 0, 0.12)"), n.addColorStop(1, "rgba(255, 143, 0, 0)"), s.fillStyle = n, s.beginPath(), s.arc(i, c - 14 * e, 48 * e, 0, Math.PI * 2), s.fill(), s.fillStyle = "rgba(0, 0, 0, 0.40)", s.beginPath(), s.ellipse(i, c + 4 * e, a, 7 * e, 0, 0, Math.PI * 2), s.fill();
+    const l = s.createLinearGradient(i - a, 0, i + a, -t);
+    l.addColorStop(0, "#E65100"), l.addColorStop(0.25, "#FFB300"), l.addColorStop(0.55, "#FFF176"), l.addColorStop(0.8, "#FFA000"), l.addColorStop(1, "#BF360C"), s.fillStyle = l, s.beginPath(), s.moveTo(i - a, c), s.bezierCurveTo(
+      i - a * 0.9,
+      c - t,
+      i + a * 0.9,
+      c - t,
+      i + a,
+      c
     ), s.closePath(), s.fill();
-    const d = s.createLinearGradient(h - a, 0, h + a, 0);
-    d.addColorStop(0, "#FFA000"), d.addColorStop(0.4, "#FFFDE7"), d.addColorStop(0.7, "#FFD54F"), d.addColorStop(1, "#FF8F00"), s.strokeStyle = d, s.lineWidth = 3.6 * e, s.beginPath(), s.ellipse(h, l - t + 2 * e, a, 7.5 * e, 0, 0, Math.PI * 2), s.stroke();
+    const d = s.createLinearGradient(i - a, 0, i + a, 0);
+    d.addColorStop(0, "#FFA000"), d.addColorStop(0.4, "#FFFDE7"), d.addColorStop(0.7, "#FFD54F"), d.addColorStop(1, "#FF8F00"), s.strokeStyle = d, s.lineWidth = 3.6 * e, s.beginPath(), s.ellipse(i, c - t + 2 * e, a, 7.5 * e, 0, 0, Math.PI * 2), s.stroke();
     const f = [
-      { x: h - 16 * e, y: l - t - 2 * e, r: 11.5 * e, c1: "#FFE082", c2: "#FF8F00", vark: !0 },
-      { x: h + 16 * e, y: l - t - 2 * e, r: 11.5 * e, c1: "#FFD54F", c2: "#FF6F00", vark: !0 },
-      { x: h, y: l - t - 1 * e, r: 12 * e, c1: "#FFF9C4", c2: "#FFA000", vark: !1 },
-      { x: h, y: l - t - 14 * e, r: 11 * e, c1: "#FFF9C4", c2: "#FFA000", vark: !0 }
+      { x: i - 16 * e, y: c - t - 2 * e, r: 11.5 * e, c1: "#FFE082", c2: "#FF8F00", vark: !0 },
+      { x: i + 16 * e, y: c - t - 2 * e, r: 11.5 * e, c1: "#FFD54F", c2: "#FF6F00", vark: !0 },
+      { x: i, y: c - t - 1 * e, r: 12 * e, c1: "#FFF9C4", c2: "#FFA000", vark: !1 },
+      { x: i, y: c - t - 14 * e, r: 11 * e, c1: "#FFF9C4", c2: "#FFA000", vark: !0 }
     ];
     for (const u of f) {
       const m = s.createRadialGradient(
@@ -1483,8 +1509,13 @@ class le {
   }
   update(e, a, t = 1) {
     this.chewPhase += 0.08 * t, this.breathPhase += 0.04 * t;
-    const r = this.x + this.targetWidth * 0.45, i = this.y + this.targetHeight * 0.55;
-    if (Math.hypot(e - r, a - i) < 200 && (this.sparkleTimer += t, this.sparkleTimer > 18 && (this.sparkleTimer = 0, this.sparkles.push({
+    const r = this.x + this.targetWidth * 0.6, h = this.y + this.targetHeight * 0.55, s = Math.hypot(e - r, a - h), i = 200 * this.scale;
+    if (s < i) {
+      const n = Math.max(0, s / i);
+      this.targetAlpha = 0.06 + n * 0.94;
+    } else
+      this.targetAlpha = 1;
+    if (this.currentAlpha += (this.targetAlpha - this.currentAlpha) * Math.min(0.22 * t, 1), s < 220 && (this.sparkleTimer += t, this.sparkleTimer > 18 && (this.sparkleTimer = 0, this.sparkles.push({
       x: r + (Math.random() - 0.5) * 50,
       y: this.y + 25 + Math.random() * 25,
       vx: (Math.random() - 0.5) * 1,
@@ -1493,36 +1524,37 @@ class le {
       alpha: 1,
       char: Math.random() < 0.6 ? "✨" : "💛"
     }))), Math.sin(this.chewPhase * 2.2) > 0.8 && Math.random() < 0.35 * t) {
-      const l = ["#FFB300", "#FFA000", "#FFE082", "#FF8F00"], n = this.x + this.targetWidth + 30 * this.scale, c = this.y + this.targetHeight - 16 * this.scale;
+      const n = ["#FFB300", "#FFA000", "#FFE082", "#FF8F00"], l = this.x + this.targetWidth + 30 * this.scale, d = this.y + this.targetHeight - 16 * this.scale;
       this.crumbs.push({
-        x: n + (Math.random() - 0.5) * 26,
-        y: c - 18 * this.scale,
+        x: l + (Math.random() - 0.5) * 26,
+        y: d - 18 * this.scale,
         vx: (Math.random() - 0.5) * 2.2,
         vy: -1.8 - Math.random() * 1.8,
         size: 1.8 + Math.random() * 2.4,
         alpha: 1,
-        color: l[Math.floor(Math.random() * l.length)]
+        color: n[Math.floor(Math.random() * n.length)]
       });
     }
-    for (let l = this.crumbs.length - 1; l >= 0; l--) {
-      const n = this.crumbs[l];
-      n.x += n.vx * t, n.y += n.vy * t, n.vy += 0.16 * t, n.alpha -= 0.028 * t, n.alpha <= 0 && this.crumbs.splice(l, 1);
+    for (let n = this.crumbs.length - 1; n >= 0; n--) {
+      const l = this.crumbs[n];
+      l.x += l.vx * t, l.y += l.vy * t, l.vy += 0.16 * t, l.alpha -= 0.028 * t, l.alpha <= 0 && this.crumbs.splice(n, 1);
     }
-    for (let l = this.sparkles.length - 1; l >= 0; l--) {
-      const n = this.sparkles[l];
-      n.x += n.vx * t, n.y += n.vy * t, n.alpha -= 0.022 * t, n.alpha <= 0 && this.sparkles.splice(l, 1);
+    for (let n = this.sparkles.length - 1; n >= 0; n--) {
+      const l = this.sparkles[n];
+      l.x += l.vx * t, l.y += l.vy * t, l.alpha -= 0.022 * t, l.alpha <= 0 && this.sparkles.splice(n, 1);
     }
   }
   render(e) {
-    const a = this.scale, t = this.targetWidth, r = this.targetHeight, i = this.y + r;
-    if (e.save(), e.fillStyle = "rgba(0, 0, 0, 0.28)", e.beginPath(), e.ellipse(this.x + t * 0.42, i + 3 * a, t * 0.52, 7 * a, 0, 0, Math.PI * 2), e.fill(), this.image && (this.isImageLoaded || this.image.complete)) {
+    if (this.currentAlpha <= 0.02) return;
+    const a = this.scale, t = this.targetWidth, r = this.targetHeight, h = this.y + r;
+    if (e.save(), e.globalAlpha = this.currentAlpha, e.fillStyle = "rgba(0, 0, 0, 0.28)", e.beginPath(), e.ellipse(this.x + t * 0.42, h + 3 * a, t * 0.52, 7 * a, 0, 0, Math.PI * 2), e.fill(), this.image && (this.isImageLoaded || this.image.complete)) {
       e.save();
-      const s = Math.sin(this.breathPhase) * 0.012, h = Math.sin(this.chewPhase) * 1.3 * a, l = this.x + t * 0.45, n = i;
-      e.translate(l, n + h), e.scale(1 - s * 0.4, 1 + s), e.translate(-l, -n), e.drawImage(this.image, this.x, this.y, t, r), e.restore();
+      const s = Math.sin(this.breathPhase) * 0.012, i = Math.sin(this.chewPhase) * 1.3 * a, c = this.x + t * 0.45, n = h;
+      e.translate(c, n + i), e.scale(1 - s * 0.4, 1 + s), e.translate(-c, -n), e.drawImage(this.image, this.x, this.y, t, r), e.restore();
     }
     if (this.bowlCanvas) {
-      const s = this.x + t + 30 * a, h = i - 4 * a;
-      e.drawImage(this.bowlCanvas, s - this.bowlOffsetX, h - this.bowlOffsetY);
+      const s = this.x + t + 30 * a, i = h - 4 * a;
+      e.drawImage(this.bowlCanvas, s - this.bowlOffsetX, i - this.bowlOffsetY);
     }
     for (const s of this.crumbs)
       e.save(), e.globalAlpha = Math.max(0, s.alpha), e.fillStyle = s.color, e.beginPath(), e.arc(s.x, s.y, s.size * a, 0, Math.PI * 2), e.fill(), e.restore();
@@ -1544,50 +1576,59 @@ class oe {
     o(this, "nativeR", 56);
     o(this, "offscreenCanvas", null);
     o(this, "flamePhase", 0);
+    o(this, "currentAlpha", 1);
+    o(this, "targetAlpha", 1);
     o(this, "options");
     this.options = e, this.scale = (e == null ? void 0 : e.scale) ?? 1, this.radiusX = Math.round(((e == null ? void 0 : e.radiusX) ?? 68) * this.scale), this.radiusY = Math.round(((e == null ? void 0 : e.radiusY) ?? 34) * this.scale);
   }
   init(e, a) {
-    var s, h, l, n;
+    var s, i, c, n;
     const t = this.scale;
-    this.radiusX = Math.round((((s = this.options) == null ? void 0 : s.radiusX) ?? 68) * t), this.radiusY = Math.round((((h = this.options) == null ? void 0 : h.radiusY) ?? 34) * t);
-    const r = 16 * t, i = 24 * t;
-    this.x = ((l = this.options) == null ? void 0 : l.x) ?? e - this.radiusX - i, this.y = ((n = this.options) == null ? void 0 : n.y) ?? a - this.radiusY - r, this.preRenderRangoli();
+    this.radiusX = Math.round((((s = this.options) == null ? void 0 : s.radiusX) ?? 68) * t), this.radiusY = Math.round((((i = this.options) == null ? void 0 : i.radiusY) ?? 34) * t);
+    const r = 16 * t, h = 24 * t;
+    this.x = ((c = this.options) == null ? void 0 : c.x) ?? e - this.radiusX - h, this.y = ((n = this.options) == null ? void 0 : n.y) ?? a - this.radiusY - r, this.preRenderRangoli();
   }
   preRenderRangoli() {
     if (typeof document > "u") return;
-    const e = this.nativeR, t = Math.ceil((e + 14) * 2), r = t / 2, i = t / 2;
+    const e = this.nativeR, t = Math.ceil((e + 14) * 2), r = t / 2, h = t / 2;
     this.offscreenCanvas = document.createElement("canvas"), this.offscreenCanvas.width = t, this.offscreenCanvas.height = t;
     const s = this.offscreenCanvas.getContext("2d");
     if (!s) return;
-    const h = s.createRadialGradient(r, i, e * 0.45, r, i, e + 8);
-    h.addColorStop(0, "rgba(0, 0, 0, 0.46)"), h.addColorStop(0.7, "rgba(0, 0, 0, 0.18)"), h.addColorStop(1, "rgba(0, 0, 0, 0)"), s.fillStyle = h, s.beginPath(), s.arc(r, i, e + 8, 0, Math.PI * 2), s.fill(), s.fillStyle = "#6E1B00", s.beginPath(), s.arc(r, i, e * 0.98, 0, Math.PI * 2), s.fill(), s.strokeStyle = "rgba(255, 255, 255, 0.95)", s.lineWidth = 1.6, s.stroke();
-    const l = 16, n = Math.PI * 2 / l;
-    for (let f = 0; f < l; f++) {
-      const u = f * n, m = u + n / 2, g = u + n, v = e * 0.64, M = f % 2 === 0 ? e * 0.96 : e * 0.88, F = e * 0.82, A = r + Math.cos(u) * v, w = i + Math.sin(u) * v, C = r + Math.cos(m) * M, S = i + Math.sin(m) * M, R = r + Math.cos(g) * v, T = i + Math.sin(g) * v, k = r + Math.cos(u + n * 0.22) * F, P = i + Math.sin(u + n * 0.22) * F, L = r + Math.cos(m - n * 0.08) * (M * 0.98), E = i + Math.sin(m - n * 0.08) * (M * 0.98), G = r + Math.cos(m + n * 0.08) * (M * 0.98), I = i + Math.sin(m + n * 0.08) * (M * 0.98), Y = r + Math.cos(g - n * 0.22) * F, D = i + Math.sin(g - n * 0.22) * F, b = s.createRadialGradient(r, i, v * 0.8, C, S, e * 0.4);
-      f % 2 === 0 ? (b.addColorStop(0, "#B71C1C"), b.addColorStop(0.5, "#E91E63"), b.addColorStop(1, "#FF80AB")) : (b.addColorStop(0, "#E65100"), b.addColorStop(0.6, "#FF9800"), b.addColorStop(1, "#FFE082")), s.fillStyle = b, s.beginPath(), s.moveTo(A, w), s.bezierCurveTo(k, P, L, E, C, S), s.bezierCurveTo(G, I, Y, D, R, T), s.closePath(), s.fill(), s.strokeStyle = "rgba(255, 255, 255, 0.85)", s.lineWidth = 1, s.stroke();
-      const z = r + Math.cos(m) * (M * 0.92), W = i + Math.sin(m) * (M * 0.92);
+    const i = s.createRadialGradient(r, h, e * 0.45, r, h, e + 8);
+    i.addColorStop(0, "rgba(0, 0, 0, 0.46)"), i.addColorStop(0.7, "rgba(0, 0, 0, 0.18)"), i.addColorStop(1, "rgba(0, 0, 0, 0)"), s.fillStyle = i, s.beginPath(), s.arc(r, h, e + 8, 0, Math.PI * 2), s.fill(), s.fillStyle = "#6E1B00", s.beginPath(), s.arc(r, h, e * 0.98, 0, Math.PI * 2), s.fill(), s.strokeStyle = "rgba(255, 255, 255, 0.95)", s.lineWidth = 1.6, s.stroke();
+    const c = 16, n = Math.PI * 2 / c;
+    for (let f = 0; f < c; f++) {
+      const u = f * n, m = u + n / 2, g = u + n, v = e * 0.64, M = f % 2 === 0 ? e * 0.96 : e * 0.88, F = e * 0.82, w = r + Math.cos(u) * v, A = h + Math.sin(u) * v, b = r + Math.cos(m) * M, C = h + Math.sin(m) * M, R = r + Math.cos(g) * v, T = h + Math.sin(g) * v, k = r + Math.cos(u + n * 0.22) * F, P = h + Math.sin(u + n * 0.22) * F, L = r + Math.cos(m - n * 0.08) * (M * 0.98), E = h + Math.sin(m - n * 0.08) * (M * 0.98), G = r + Math.cos(m + n * 0.08) * (M * 0.98), I = h + Math.sin(m + n * 0.08) * (M * 0.98), Y = r + Math.cos(g - n * 0.22) * F, D = h + Math.sin(g - n * 0.22) * F, p = s.createRadialGradient(r, h, v * 0.8, b, C, e * 0.4);
+      f % 2 === 0 ? (p.addColorStop(0, "#B71C1C"), p.addColorStop(0.5, "#E91E63"), p.addColorStop(1, "#FF80AB")) : (p.addColorStop(0, "#E65100"), p.addColorStop(0.6, "#FF9800"), p.addColorStop(1, "#FFE082")), s.fillStyle = p, s.beginPath(), s.moveTo(w, A), s.bezierCurveTo(k, P, L, E, b, C), s.bezierCurveTo(G, I, Y, D, R, T), s.closePath(), s.fill(), s.strokeStyle = "rgba(255, 255, 255, 0.85)", s.lineWidth = 1, s.stroke();
+      const z = r + Math.cos(m) * (M * 0.92), W = h + Math.sin(m) * (M * 0.92);
       s.fillStyle = "#FFFFFF", s.beginPath(), s.arc(z, W, 1.3, 0, Math.PI * 2), s.fill();
     }
-    for (let f = 0; f < l; f++) {
-      const u = (f + 0.5) * n, m = f * n, g = (f + 1) * n, v = e * 0.44, M = e * 0.65, F = e * 0.56, A = r + Math.cos(m) * v, w = i + Math.sin(m) * v, C = r + Math.cos(u) * M, S = i + Math.sin(u) * M, R = r + Math.cos(g) * v, T = i + Math.sin(g) * v, k = r + Math.cos(m + n * 0.25) * F, P = i + Math.sin(m + n * 0.25) * F, L = r + Math.cos(g - n * 0.25) * F, E = i + Math.sin(g - n * 0.25) * F;
-      s.fillStyle = f % 2 === 0 ? "#FFB300" : "#FFD54F", s.beginPath(), s.moveTo(A, w), s.quadraticCurveTo(k, P, C, S), s.quadraticCurveTo(L, E, R, T), s.closePath(), s.fill(), s.strokeStyle = "#FFFFFF", s.lineWidth = 0.8, s.stroke();
+    for (let f = 0; f < c; f++) {
+      const u = (f + 0.5) * n, m = f * n, g = (f + 1) * n, v = e * 0.44, M = e * 0.65, F = e * 0.56, w = r + Math.cos(m) * v, A = h + Math.sin(m) * v, b = r + Math.cos(u) * M, C = h + Math.sin(u) * M, R = r + Math.cos(g) * v, T = h + Math.sin(g) * v, k = r + Math.cos(m + n * 0.25) * F, P = h + Math.sin(m + n * 0.25) * F, L = r + Math.cos(g - n * 0.25) * F, E = h + Math.sin(g - n * 0.25) * F;
+      s.fillStyle = f % 2 === 0 ? "#FFB300" : "#FFD54F", s.beginPath(), s.moveTo(w, A), s.quadraticCurveTo(k, P, b, C), s.quadraticCurveTo(L, E, R, T), s.closePath(), s.fill(), s.strokeStyle = "#FFFFFF", s.lineWidth = 0.8, s.stroke();
     }
-    s.fillStyle = "#00695C", s.beginPath(), s.arc(r, i, e * 0.43, 0, Math.PI * 2), s.fill(), s.strokeStyle = "#FFFFFF", s.lineWidth = 1.3, s.stroke(), s.fillStyle = "#FFC107", s.beginPath(), s.arc(r, i, e * 0.32, 0, Math.PI * 2), s.fill(), s.fillStyle = "#FFFFFF";
+    s.fillStyle = "#00695C", s.beginPath(), s.arc(r, h, e * 0.43, 0, Math.PI * 2), s.fill(), s.strokeStyle = "#FFFFFF", s.lineWidth = 1.3, s.stroke(), s.fillStyle = "#FFC107", s.beginPath(), s.arc(r, h, e * 0.32, 0, Math.PI * 2), s.fill(), s.fillStyle = "#FFFFFF";
     for (let f = 0; f < 12; f++) {
-      const u = f / 12 * Math.PI * 2, m = r + Math.cos(u) * (e * 0.38), g = i + Math.sin(u) * (e * 0.38);
+      const u = f / 12 * Math.PI * 2, m = r + Math.cos(u) * (e * 0.38), g = h + Math.sin(u) * (e * 0.38);
       s.beginPath(), s.arc(m, g, 1.4, 0, Math.PI * 2), s.fill();
     }
-    const c = e * 0.21, d = s.createRadialGradient(r, i, 2, r, i, c);
-    d.addColorStop(0, "#FFA000"), d.addColorStop(0.5, "#D84315"), d.addColorStop(1, "#8D2B0F"), s.fillStyle = d, s.beginPath(), s.arc(r, i, c, 0, Math.PI * 2), s.fill(), s.strokeStyle = "#FFF176", s.lineWidth = 1.3, s.stroke(), s.fillStyle = "#4E342E", s.beginPath(), s.arc(r, i, c * 0.65, 0, Math.PI * 2), s.fill(), s.fillStyle = "#212121", s.beginPath(), s.arc(r, i - c * 0.2, 1.5, 0, Math.PI * 2), s.fill();
+    const l = e * 0.21, d = s.createRadialGradient(r, h, 2, r, h, l);
+    d.addColorStop(0, "#FFA000"), d.addColorStop(0.5, "#D84315"), d.addColorStop(1, "#8D2B0F"), s.fillStyle = d, s.beginPath(), s.arc(r, h, l, 0, Math.PI * 2), s.fill(), s.strokeStyle = "#FFF176", s.lineWidth = 1.3, s.stroke(), s.fillStyle = "#4E342E", s.beginPath(), s.arc(r, h, l * 0.65, 0, Math.PI * 2), s.fill(), s.fillStyle = "#212121", s.beginPath(), s.arc(r, h - l * 0.2, 1.5, 0, Math.PI * 2), s.fill();
   }
-  update(e = 1) {
-    this.flamePhase += 0.08 * e;
+  update(e = -999, a = -999, t = 1) {
+    this.flamePhase += 0.08 * t;
+    const r = Math.hypot(e - this.x, a - this.y), h = 150 * this.scale;
+    if (r < h) {
+      const s = Math.max(0, r / h);
+      this.targetAlpha = 0.06 + s * 0.94;
+    } else
+      this.targetAlpha = 1;
+    this.currentAlpha += (this.targetAlpha - this.currentAlpha) * Math.min(0.22 * t, 1);
   }
   render(e) {
-    if (!this.offscreenCanvas) return;
-    e.save();
-    const a = this.nativeR, t = 14, r = (a + t) * 2, i = (a + t) / a, s = this.radiusX * 2 * i, h = this.radiusY * 2 * i;
+    if (!this.offscreenCanvas || this.currentAlpha <= 0.02) return;
+    e.save(), e.globalAlpha = this.currentAlpha;
+    const a = this.nativeR, t = 14, r = (a + t) * 2, h = (a + t) / a, s = this.radiusX * 2 * h, i = this.radiusY * 2 * h;
     e.drawImage(
       this.offscreenCanvas,
       0,
@@ -1595,23 +1636,23 @@ class oe {
       r,
       r,
       this.x - s / 2,
-      this.y - h / 2,
+      this.y - i / 2,
       s,
-      h
+      i
     );
-    const l = Math.sin(this.flamePhase) * 1.5, n = this.x, c = this.y - 2 * this.scale, d = e.createRadialGradient(
+    const c = Math.sin(this.flamePhase) * 1.5, n = this.x, l = this.y - 2 * this.scale, d = e.createRadialGradient(
       n,
-      c - 6,
+      l - 6,
       1,
       n,
-      c - 6,
+      l - 6,
       30 * this.scale
     );
-    d.addColorStop(0, "rgba(255, 214, 0, 0.65)"), d.addColorStop(0.45, "rgba(255, 111, 0, 0.24)"), d.addColorStop(1, "rgba(255, 111, 0, 0)"), e.fillStyle = d, e.beginPath(), e.arc(n, c - 6, 30 * this.scale, 0, Math.PI * 2), e.fill();
-    const f = (16 + l) * this.scale, u = 5 * this.scale;
-    e.fillStyle = "#FF9100", e.beginPath(), e.moveTo(n - u, c), e.quadraticCurveTo(n - u * 1.3, c - f * 0.4, n, c - f), e.quadraticCurveTo(n + u * 1.3, c - f * 0.4, n + u, c), e.closePath(), e.fill();
+    d.addColorStop(0, "rgba(255, 214, 0, 0.65)"), d.addColorStop(0.45, "rgba(255, 111, 0, 0.24)"), d.addColorStop(1, "rgba(255, 111, 0, 0)"), e.fillStyle = d, e.beginPath(), e.arc(n, l - 6, 30 * this.scale, 0, Math.PI * 2), e.fill();
+    const f = (16 + c) * this.scale, u = 5 * this.scale;
+    e.fillStyle = "#FF9100", e.beginPath(), e.moveTo(n - u, l), e.quadraticCurveTo(n - u * 1.3, l - f * 0.4, n, l - f), e.quadraticCurveTo(n + u * 1.3, l - f * 0.4, n + u, l), e.closePath(), e.fill();
     const m = f * 0.72, g = u * 0.62;
-    e.fillStyle = "#FFEA00", e.beginPath(), e.moveTo(n - g, c), e.quadraticCurveTo(n - g * 1.2, c - m * 0.4, n, c - m), e.quadraticCurveTo(n + g * 1.2, c - m * 0.4, n + g, c), e.closePath(), e.fill(), e.fillStyle = "#FFFFFF", e.beginPath(), e.ellipse(n, c - m * 0.35, 1.4 * this.scale, 3.2 * this.scale, 0, 0, Math.PI * 2), e.fill(), e.restore();
+    e.fillStyle = "#FFEA00", e.beginPath(), e.moveTo(n - g, l), e.quadraticCurveTo(n - g * 1.2, l - m * 0.4, n, l - m), e.quadraticCurveTo(n + g * 1.2, l - m * 0.4, n + g, l), e.closePath(), e.fill(), e.fillStyle = "#FFFFFF", e.beginPath(), e.ellipse(n, l - m * 0.35, 1.4 * this.scale, 3.2 * this.scale, 0, 0, Math.PI * 2), e.fill(), e.restore();
   }
   clear() {
   }
@@ -1722,10 +1763,10 @@ class de {
   startOccasionalAnar(e = 18e3) {
     let a = null;
     const t = () => {
-      const r = this.canvasMgr.width, i = this.canvasMgr.height, s = Math.max(r * 0.72, r - 120);
-      this.anar({ x: s, y: i - 14, height: 180, duration: 4200 });
-      const h = e * (0.8 + Math.random() * 0.4);
-      a = window.setTimeout(t, h);
+      const r = this.canvasMgr.width, h = this.canvasMgr.height, s = Math.max(r * 0.72, r - 120);
+      this.anar({ x: s, y: h - 14, height: 180, duration: 4200 });
+      const i = e * (0.8 + Math.random() * 0.4);
+      a = window.setTimeout(t, i);
     };
     return a = window.setTimeout(t, 3500), () => {
       a && clearTimeout(a);
@@ -1762,19 +1803,19 @@ class de {
     (e == null ? void 0 : e.sound) !== void 0 && this.sound.setEnabled(e.sound);
     const a = (e == null ? void 0 : e.interval) ?? 380, t = (e == null ? void 0 : e.homing) ?? !0;
     let r = 0;
-    const i = (l, n) => {
-      const c = performance.now();
-      if (c - r < a) return;
-      r = c;
-      const d = this.canvasMgr.width, f = this.canvasMgr.height, u = Math.max(30, Math.min(d - 30, l + (Math.random() - 0.5) * 220)), m = f;
-      this.rocketsRenderer.launch(1, u, m, l, n, t);
-    }, s = this.mouse.onMove((l, n) => {
-      i(l, n);
-    }), h = window.setInterval(() => {
-      (this.mouse.isMoving || this.mouse.isDown) && i(this.mouse.x, this.mouse.y);
+    const h = (c, n) => {
+      const l = performance.now();
+      if (l - r < a) return;
+      r = l;
+      const d = this.canvasMgr.width, f = this.canvasMgr.height, u = Math.max(30, Math.min(d - 30, c + (Math.random() - 0.5) * 220)), m = f;
+      this.rocketsRenderer.launch(1, u, m, c, n, t);
+    }, s = this.mouse.onMove((c, n) => {
+      h(c, n);
+    }), i = window.setInterval(() => {
+      (this.mouse.isMoving || this.mouse.isDown) && h(this.mouse.x, this.mouse.y);
     }, a);
     return () => {
-      s(), clearInterval(h);
+      s(), clearInterval(i);
     };
   }
   /**
@@ -1889,8 +1930,8 @@ class de {
       if (!this.isRunning || (this.animationFrameId = requestAnimationFrame(e), this.isPaused)) return;
       const t = Math.max(1, a - this.lastFrameTime);
       this.lastFrameTime = a;
-      const r = Math.min(t / 16.667, 2), i = this.canvasMgr.getContext(), s = this.canvasMgr.width, h = this.canvasMgr.height;
-      this.canvasMgr.clear(), this.lanternsRenderer && (this.lanternsRenderer.update(s, h, r), this.lanternsRenderer.render(i)), this.flowerShowerRenderer && (this.flowerShowerRenderer.update(s, h, r), this.flowerShowerRenderer.render(i)), this.anarRenderer.update(r), this.anarRenderer.render(i), this.chakriRenderer.update(r), this.chakriRenderer.render(i), this.rocketsRenderer.update(r), this.rocketsRenderer.render(i), this.ladiRenderer.update(r), this.ladiRenderer.render(i), this.phuljhadiRenderer.update(r), this.phuljhadiRenderer.render(i), this.diyasRenderer && (this.diyasRenderer.update(s, h, r), this.diyasRenderer.render(i)), this.rangoliRenderer && (this.rangoliRenderer.update(r), this.rangoliRenderer.render(i)), this.toranRenderer && (this.toranRenderer.update(this.mouse.x, this.mouse.y, r), this.toranRenderer.render(i)), this.hangingLanternsRenderer && (this.hangingLanternsRenderer.update(this.mouse.x, this.mouse.y, r), this.hangingLanternsRenderer.render(i)), this.labradorRenderer && (this.labradorRenderer.update(this.mouse.x, this.mouse.y, r), this.labradorRenderer.render(i));
+      const r = Math.min(t / 16.667, 2), h = this.canvasMgr.getContext(), s = this.canvasMgr.width, i = this.canvasMgr.height;
+      this.canvasMgr.clear(), this.lanternsRenderer && (this.lanternsRenderer.update(s, i, this.mouse.x, this.mouse.y, r), this.lanternsRenderer.render(h)), this.flowerShowerRenderer && (this.flowerShowerRenderer.update(s, i, r), this.flowerShowerRenderer.render(h)), this.anarRenderer.update(r), this.anarRenderer.render(h), this.chakriRenderer.update(r), this.chakriRenderer.render(h), this.rocketsRenderer.update(r), this.rocketsRenderer.render(h), this.ladiRenderer.update(r), this.ladiRenderer.render(h), this.phuljhadiRenderer.update(r), this.phuljhadiRenderer.render(h), this.diyasRenderer && (this.diyasRenderer.update(s, i, this.mouse.x, this.mouse.y, r), this.diyasRenderer.render(h)), this.rangoliRenderer && (this.rangoliRenderer.update(this.mouse.x, this.mouse.y, r), this.rangoliRenderer.render(h)), this.toranRenderer && (this.toranRenderer.update(this.mouse.x, this.mouse.y, r), this.toranRenderer.render(h)), this.hangingLanternsRenderer && (this.hangingLanternsRenderer.update(this.mouse.x, this.mouse.y, r), this.hangingLanternsRenderer.render(h)), this.labradorRenderer && (this.labradorRenderer.update(this.mouse.x, this.mouse.y, r), this.labradorRenderer.render(h));
     };
     this.animationFrameId = requestAnimationFrame(e);
   }
@@ -1908,4 +1949,4 @@ export {
   oe as R,
   he as T
 };
-//# sourceMappingURL=DiwaliEngine-GeW5pnSd.js.map
+//# sourceMappingURL=DiwaliEngine-DsmUah-1.js.map

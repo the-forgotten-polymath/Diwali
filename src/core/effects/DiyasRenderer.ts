@@ -9,6 +9,8 @@ interface DiyaInstance {
   flickerSpeed: number;
   floatPhase: number;
   floatSpeed: number;
+  currentAlpha: number;
+  targetAlpha: number;
 }
 
 export class DiyasRenderer {
@@ -157,6 +159,8 @@ export class DiyasRenderer {
           flickerSpeed: (0.08 + Math.random() * 0.05) * this.options.flickerSpeed,
           floatPhase: Math.random() * Math.PI * 2,
           floatSpeed: 0.02 + Math.random() * 0.02,
+          currentAlpha: 1.0,
+          targetAlpha: 1.0,
         });
       }
       return;
@@ -185,11 +189,13 @@ export class DiyasRenderer {
         flickerSpeed: (0.07 + Math.random() * 0.04) * this.options.flickerSpeed,
         floatPhase: (i / count) * Math.PI * 2,
         floatSpeed: 0.02 + Math.random() * 0.015,
+        currentAlpha: 1.0,
+        targetAlpha: 1.0,
       });
     }
   }
 
-  public update(_width: number, _height: number, dt = 1): void {
+  public update(_width: number, _height: number, mouseX = -999, mouseY = -999, dt = 1): void {
     const isFloating = this.options.mode === 'floating';
 
     for (const diya of this.diyas) {
@@ -198,6 +204,17 @@ export class DiyasRenderer {
         diya.floatPhase += diya.floatSpeed * this.options.speed * dt;
         diya.y = diya.baseY + Math.sin(diya.floatPhase) * 6;
       }
+
+      // Mouse proximity transparency: fade out when cursor approaches any diya
+      const dist = Math.hypot(mouseX - diya.x, mouseY - diya.y);
+      const fadeRadius = 120 * diya.scale;
+      if (dist < fadeRadius) {
+        const factor = Math.max(0, dist / fadeRadius);
+        diya.targetAlpha = 0.06 + factor * 0.94;
+      } else {
+        diya.targetAlpha = 1.0;
+      }
+      diya.currentAlpha += (diya.targetAlpha - diya.currentAlpha) * Math.min(0.22 * dt, 1);
     }
   }
 
@@ -208,8 +225,11 @@ export class DiyasRenderer {
     const halfW = this.diyaW / 2;
     const baseH = this.diyaH;
 
-    // Ultra fast single drawImage per diya! (Zero gradients, zero paths in render loop)
+    // Ultra fast single drawImage per diya with smooth proximity transparency
     for (const diya of this.diyas) {
+      if (diya.currentAlpha <= 0.02) continue;
+
+      ctx.globalAlpha = diya.currentAlpha;
       const flicker = Math.sin(diya.flamePhase) * 0.08;
       const flickerH = baseH * (1 + flicker);
       ctx.drawImage(

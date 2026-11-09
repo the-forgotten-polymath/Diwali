@@ -18,6 +18,8 @@ export class LabradorRenderer {
   private chewPhase = 0;
   private breathPhase = 0;
   private sparkleTimer = 0;
+  private currentAlpha = 1.0;
+  private targetAlpha = 1.0;
 
   // Offscreen pre-rendered sweets bowl & laddoos
   private bowlCanvas: HTMLCanvasElement | null = null;
@@ -197,10 +199,22 @@ export class LabradorRenderer {
     this.chewPhase += 0.08 * dt;
     this.breathPhase += 0.04 * dt;
 
-    const dogCenterX = this.x + this.targetWidth * 0.45;
+    // Center of Julie + her sweets bowl area
+    const dogCenterX = this.x + this.targetWidth * 0.60;
     const dogCenterY = this.y + this.targetHeight * 0.55;
     const distToMouse = Math.hypot(mouseX - dogCenterX, mouseY - dogCenterY);
-    const isPetted = distToMouse < 200;
+
+    // Mouse proximity transparency: smoothly fade out when mouse approaches so UI behind stays 100% visible
+    const fadeRadius = 200 * this.scale;
+    if (distToMouse < fadeRadius) {
+      const factor = Math.max(0, distToMouse / fadeRadius);
+      this.targetAlpha = 0.06 + factor * 0.94;
+    } else {
+      this.targetAlpha = 1.0;
+    }
+    this.currentAlpha += (this.targetAlpha - this.currentAlpha) * Math.min(0.22 * dt, 1);
+
+    const isPetted = distToMouse < 220;
 
     if (isPetted) {
       this.sparkleTimer += dt;
@@ -257,12 +271,15 @@ export class LabradorRenderer {
   }
 
   public render(ctx: CanvasRenderingContext2D): void {
+    if (this.currentAlpha <= 0.02) return;
+
     const s = this.scale;
     const w = this.targetWidth;
     const h = this.targetHeight;
     const floorY = this.y + h;
 
     ctx.save();
+    ctx.globalAlpha = this.currentAlpha;
 
     // 1. Soft Floor Shadow
     ctx.fillStyle = 'rgba(0, 0, 0, 0.28)';

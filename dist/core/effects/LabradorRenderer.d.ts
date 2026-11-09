@@ -13,6 +13,8 @@ export declare class LabradorRenderer {
     private chewPhase;
     private breathPhase;
     private sparkleTimer;
+    private currentAlpha;
+    private targetAlpha;
     private bowlCanvas;
     private bowlOffsetX;
     private bowlOffsetY;

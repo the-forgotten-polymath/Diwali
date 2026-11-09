@@ -33,3 +33,4 @@ try {
   console.log('Web package usage:');
   console.log("  import { rockets, diyas, labrador, rangoli } from 'diwali';");
 }
+

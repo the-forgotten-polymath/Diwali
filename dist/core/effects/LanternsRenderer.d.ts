@@ -7,7 +7,7 @@ export declare class LanternsRenderer {
     private preRenderSprites;
     init(width: number, height: number): void;
     private createLantern;
-    update(width: number, height: number, dt?: number): void;
+    update(width: number, height: number, mouseX?: number, mouseY?: number, dt?: number): void;
     render(ctx: CanvasRenderingContext2D): void;
     clear(): void;
 }

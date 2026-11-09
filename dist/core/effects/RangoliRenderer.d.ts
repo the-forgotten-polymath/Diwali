@@ -14,11 +14,13 @@ export declare class RangoliRenderer {
     private nativeR;
     private offscreenCanvas;
     private flamePhase;
+    private currentAlpha;
+    private targetAlpha;
     private options?;
     constructor(options?: RangoliOptions);
     init(width: number, height: number): void;
     private preRenderRangoli;
-    update(dt?: number): void;
+    update(mouseX?: number, mouseY?: number, dt?: number): void;
     render(ctx: CanvasRenderingContext2D): void;
     clear(): void;
 }
