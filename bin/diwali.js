@@ -31,6 +31,6 @@ try {
   console.log('  git clone https://github.com/the-forgotten-polymath/Diwali.git');
   console.log('  cd Diwali && npm install && npm run overlay\n');
   console.log('Web package usage:');
-  console.log("  import { rockets, diyas, labrador, rangoli } from 'diwali';");
+  console.log("  import { rockets, diyas, labrador, rangoli } from 'diwali-julie';");
 }
 

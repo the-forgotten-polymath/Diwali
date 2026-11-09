@@ -1,12 +1,13 @@
 {
-  "name": "diwali",
-  "version": "1.0.1",
+  "name": "diwali-julie",
+  "version": "1.0.0",
   "description": "The definitive festive animation engine & ambient desktop screen overlay for Diwali — dedicated to Julie 💛",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
+    "diwali-julie": "bin/diwali.js",
     "diwali": "bin/diwali.js"
   },
   "exports": {

@@ -1,8 +1,8 @@
-# Diwali 🪔✨
+# diwali-julie 🪔✨
 
-> *A high-performance festive animation engine & ambient desktop screen overlay for Diwali — crafted with love, light, and cherished memories.*
+> *A high-performance festive animation engine & ambient desktop screen overlay for Diwali — crafted with love, light, and cherished memories of Julie.*
 
-[![npm version](https://img.shields.io/badge/npm-diwali-orange.svg)](https://www.npmjs.com/package/diwali)
+[![npm version](https://img.shields.io/badge/npm-diwali--julie-orange.svg)](https://www.npmjs.com/package/diwali-julie)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![60/120 FPS](https://img.shields.io/badge/Performance-60%2F120%20FPS-brightgreen.svg)](#-performance--architecture)
@@ -65,32 +65,32 @@ npm run package:app
 
 ---
 
-## 🪔 The Node / Web Package (`diwali`)
+## 🪔 The Node / Web Package (`diwali-julie`)
 
-`diwali` is a zero-dependency, tree-shakeable festive animation package for modern web apps (React, Next.js, Vue, or Vanilla HTML5 Canvas), plus a CLI desktop overlay tool!
+`diwali-julie` is a zero-dependency, tree-shakeable festive animation package for modern web apps (React, Next.js, Vue, or Vanilla HTML5 Canvas), plus an instant CLI desktop overlay!
 
 ### 📦 Installation
 
 ```bash
-npm install diwali
+npm install diwali-julie
 ```
 
 ```bash
-yarn add diwali
+yarn add diwali-julie
 ```
 
 ```bash
-pnpm add diwali
+pnpm add diwali-julie
 ```
 
 ---
 
-## ⚡ Instant Desktop Overlay (`npx diwali`)
+## ⚡ Instant Desktop Overlay (`npx diwali-julie`)
 
-You can launch the festive ambient macOS desktop overlay directly from your terminal:
+You can launch the festive ambient macOS desktop overlay directly from your terminal anytime:
 
 ```bash
-npx diwali
+npx diwali-julie
 ```
 
 ---
@@ -100,12 +100,12 @@ npx diwali
 ### 1. One-Line Festive Salvos
 
 ```typescript
-import { rockets, diyas, rangoli, labrador, toran, chakri, flowerShower } from 'diwali';
+import { rockets, diyas, rangoli, labrador, toran, chakri, flowerShower } from 'diwali-julie';
 
 // Launch a rocket salvo bursting into vibrant sparks
 rockets({ count: 6 });
 
-// Dock glowing clay diyas at the bottom of the screen
+// Dock glowing clay diyas at the bottom of the screen (corners cleared)
 const stopDiyas = diyas({ mode: 'docked', count: 7, clearCorners: true });
 
 // Place the floor-perspective rangoli in the bottom-right
@@ -124,7 +124,7 @@ flowerShower({ count: 50, duration: 6000 });
 ### 2. Full Engine Control
 
 ```typescript
-import { DiwaliEngine } from 'diwali';
+import { DiwaliEngine } from 'diwali-julie';
 
 const diwali = new DiwaliEngine({
   sound: true,      // Procedural Web Audio (no audio downloads!)
@@ -148,7 +148,7 @@ window.addEventListener('click', (e) => {
 
 ```tsx
 import React, { useEffect } from 'react';
-import { DiwaliCanvas, useDiwali } from 'diwali/react';
+import { DiwaliCanvas, useDiwali } from 'diwali-julie/react';
 
 export function DiwaliHero() {
   const { rockets, celebrate } = useDiwali();
